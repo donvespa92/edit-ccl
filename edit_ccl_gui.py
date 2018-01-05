@@ -11,6 +11,7 @@ class MainApplication:
         self.font = Font(family="Arial", size=12)
         self.wdir = os.getcwd().replace('\\','/') 
         self.master = master
+        self.ccl_orig = 'orig_setup.ccl'
         self.dom_names = []
         self.data = []
         
@@ -28,10 +29,10 @@ class MainApplication:
         self.frame_text = tk.Frame(self.mainframe,bd=2,relief='groove')
 
     def gui_set_entries(self):
-        self.entry_inputfile = tk.Entry(self.frame_entries,font=self.font,width=50)
+        self.entry_inputfile = tk.Entry(self.frame_entries,font=self.font,width=50,state='disabled')
         self.label_filter_dom = tk.Label(
                 self.frame_entries,
-                text='Filter domains:',
+                text='Filter objects:',
                 font=self.font)
         self.label_filter_text = tk.Label(
                 self.frame_entries,
@@ -41,10 +42,10 @@ class MainApplication:
                 self.frame_entries,
                 text='Name',
                 font=self.font)
-        self.entry_search_name = tk.Entry(self.frame_entries,font=self.font)
-        self.entry_search_name.bind("<KeyRelease>", self.filter_objs)
-        self.entry_search_name2 = tk.Entry(self.frame_entries,font=self.font)
-        self.entry_search_name2.bind("<KeyRelease>", self.filter_bnds)
+        self.entry_search_obj = tk.Entry(self.frame_entries,font=self.font)
+        self.entry_search_obj.bind("<KeyRelease>", self.filter_objs)
+        self.entry_search_text = tk.Entry(self.frame_entries,font=self.font)
+        self.entry_search_text.bind("<KeyRelease>", self.filter_bnds)
           
     def gui_set_text(self):
         self.text_output = tk.Text(
@@ -112,9 +113,9 @@ class MainApplication:
         self.entry_inputfile.grid(row=1,column=1,sticky='NSEW',padx=5,pady=5)
         self.button_selectfile.grid(row=1,column=2,sticky='NSEW',padx=5,pady=5)
         self.label_filter_dom.grid(row=2,column=1,sticky='E',padx=5,pady=5)
-        self.entry_search_name.grid(row=2,column=2,sticky='NSEW',padx=5,pady=5)
+        self.entry_search_obj.grid(row=2,column=2,sticky='NSEW',padx=5,pady=5)
         self.label_filter_text.grid(row=3,column=1,sticky='E',padx=5,pady=5)
-        self.entry_search_name2.grid(row=3,column=2,sticky='NSEW',padx=5,pady=5)
+        self.entry_search_text.grid(row=3,column=2,sticky='NSEW',padx=5,pady=5)
         self.label_optionmenu.grid(row=4,column=1,sticky='E',padx=5,pady=5)
         self.optionmenu_objects.grid(row=4,column=2,sticky='NSEW',padx=5,pady=5)
         
@@ -138,7 +139,7 @@ class MainApplication:
         self.text_output.config(state='disabled')
 
     def cmd_filter(self,event):
-        mystr = self.entry_search_name.get()
+        mystr = self.entry_search_obj.get()
         obj_name = self.objects[self.lb_objects.curselection()[0]] 
         self.filter_bnds(name=mystr,domain=obj_name)
     
@@ -150,19 +151,25 @@ class MainApplication:
         self.filtered.append(obj_name)
         
     def cmd_selectfile(self):
-        self.inputfile_path = tk.filedialog.askopenfilename(
+        temp = tk.filedialog.askopenfilename(
                 title='Choose a .def file',
                 filetypes=(              
                         ("Solver input file", "*.def"),
                         ("All files", "*.*") ) )
-        if (self.inputfile_path):
+        
+        if temp:
+            self.inputfile_path = temp
             self.inputfile_name = os.path.basename(self.inputfile_path)
             self.inputfile_dir_name = os.path.dirname(self.inputfile_path)
+            
+            self.entry_inputfile.config(state='normal')
             self.entry_inputfile.delete(0,'end')
             self.entry_inputfile.insert(0,self.inputfile_path)
+            self.entry_inputfile.config(state='disabled')
+            
             self.exportccl(self.inputfile_path)
             self.search_obj(self.obj_type.get())
-    
+
     def cmd_edit(self):
         self.text_output.config(state='normal')
         return
@@ -176,7 +183,7 @@ class MainApplication:
         self.text_output.config(state='disabled')
     
     def create_new_setup(self):
-        self.new_setup = self.raw_data
+        self.new_setup = self.orig_setup
         selection = self.text_output.get(1.0,'end').split("\n")
         for idx,line in enumerate(selection):
                 if ('#' in line):
@@ -220,30 +227,29 @@ class MainApplication:
             self.new_setup[fidx:lidx] = selection[ofidx:olidx]
     
     def exportccl(self,inputfile):
-        self.raw_data = []
-        self.ccl_orig = 'orig_setup.ccl'
+        self.orig_setup = []
+        
         if os.path.exists(self.ccl_orig):
             os.remove(self.ccl_orig)
         os.system('cfx5cmds -read -def '+inputfile+' -ccl '+self.ccl_orig);
         with open(self.ccl_orig) as fp:
             for line in fp:
-                self.raw_data.append(line.rstrip())                
+                self.orig_setup.append(line.rstrip())                
     
     def filter_objs(self,event):
-        if (self.entry_search_name.get()):
-            tag = self.entry_search_name.get()
+        if self.entry_search_obj.get():
+            tag = self.entry_search_obj.get()
             self.lb_objects.delete(0,'end')
             objects = []
             for obj in self.objects:
                 if (tag in obj or tag.upper() in obj or tag.lower() in obj):
                     self.lb_objects.insert('end',obj)
                     objects.append(obj)
-            self.objects = objects
         else:
             self.search_obj(self.obj_type.get())
         
     def filter_bnds(self,event):
-        tag = self.entry_search_name2.get()
+        tag = self.entry_search_text.get()
         self.filtered = []
         if (tag == ''):
             self.insert_text(self.text)          
@@ -318,11 +324,11 @@ class MainApplication:
     def search_obj(self,obj_type):
         self.objects = []
         if (obj_type=='Boundary'):
-            for line in self.raw_data:
+            for line in self.orig_setup:
                 if (obj_type.upper()+':' in line and 'Side ' not in line):
                     self.objects.append(line.split(':')[1].lstrip(' ').rstrip(' '))
         else:
-            for line in self.raw_data:
+            for line in self.orig_setup:
                 if (obj_type.upper()+':' in line):
                     self.objects.append(line.split(':')[1].lstrip(' ').rstrip(' '))
         self.lb_objects.delete(0,'end')
@@ -338,7 +344,7 @@ class MainApplication:
         self.selection = []
         self.filtered = []
         
-        for idx,line in enumerate(self.raw_data):
+        for idx,line in enumerate(self.orig_setup):
             if (obj_type.upper() in line and obj_name in line):
                 fidx = idx+1
                 space = len(line) - len(line.lstrip(' '))
@@ -348,7 +354,7 @@ class MainApplication:
                 self.filtered.append(line)
                 break
  
-        for idx,line in enumerate(self.raw_data[idx_parent:]):
+        for idx,line in enumerate(self.orig_setup[idx_parent:]):
             sp = len(line) - len(line.lstrip(' '))
             if (sp == space and obj_type.upper() not in line):
                 self.selection.append(line)
