@@ -85,11 +85,13 @@ class MainApplication:
                 self.frame_text,
                 text='Edit',
                 font=self.font,
+                height=2,
                 command=self.cmd_edit)
         self.button_save = tk.Button(
                 self.frame_text,
                 text='Save',
                 font=self.font,
+                height=2,
                 command=self.cmd_save)
     
     def gui_set_optionmenu(self):
@@ -109,7 +111,7 @@ class MainApplication:
         self.mainframe.columnconfigure(1,weight=1)
         self.mainframe.columnconfigure(2,weight=1)
         
-        self.frame_entries.pack(fill='both',expand=1,padx=5,pady=5)   
+        self.frame_entries.pack(fill='x',padx=5,pady=5)   
         self.frame_entries.columnconfigure(1,weight=1)
         self.frame_entries.columnconfigure(2,weight=0)
         self.entry_inputfile.grid(row=1,column=1,sticky='NSEW',padx=5,pady=5)
@@ -124,14 +126,15 @@ class MainApplication:
         self.frame_text.pack(fill='both',expand=1,padx=5,pady=5)
         self.frame_text.columnconfigure(1,weight=1)
         self.frame_text.columnconfigure(3,weight=1)
+        self.frame_text.rowconfigure(1,weight=1)
         self.lb_objects.grid(row=1,column=1,sticky='NSEW')
         self.lb_scrollbar_x.grid(row=2,column=1,sticky='NSEW')
         self.lb_scrollbar_y.grid(row=1,column=2,sticky='NSEW')
         self.text_output.grid(row=1,column=3,sticky='NSEW')
         self.scrollbar.grid(row=1,column=4,sticky='NSEW')
         
-        self.button_edit.grid(row=3,columnspan=4,sticky='NSEW')
-        self.button_save.grid(row=4,columnspan=4,sticky='NSEW')
+        self.button_edit.grid(row=3,columnspan=5,sticky='NSEW',padx=5,pady=5)
+        self.button_save.grid(row=4,columnspan=5,sticky='NSEW',padx=5,pady=5)
     
     def insert_text(self,text):
         self.text_output.config(state='normal')
@@ -392,7 +395,9 @@ class MainApplication:
 def main():
     root = tk.Tk()
     root.title('Edit .ccl file')
-    ExtrudeApp = MainApplication(root)
+    MainApplication(root)
+    root.update()
+    root.minsize(root.winfo_width(), root.winfo_height())
     root.mainloop()
    
 if __name__ == '__main__':
