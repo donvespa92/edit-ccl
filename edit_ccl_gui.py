@@ -8,7 +8,7 @@ import os
 
 class MainApplication:
     def __init__(self,master):
-        self.obj_types = ['Domain','Boundary','Domain Interface']
+        self.obj_types = ['Domain','Boundary','Domain Interface','Expressions']
         self.font = Font(family="Arial", size=12)
         self.wdir = os.getcwd().replace('\\','/') 
         self.master = master
@@ -54,10 +54,14 @@ class MainApplication:
                 self.frame_text,
                 height=20,
                 width=60,
+                wrap='none',
                 state='disabled')
-        self.scrollbar = tk.Scrollbar(self.frame_text)
-        self.scrollbar.config(command=self.text_output.yview)
-        self.text_output.config(yscrollcommand=self.scrollbar.set)
+        self.text_xscrollbar = tk.Scrollbar(self.frame_text)
+        self.text_xscrollbar.config(command=self.text_output.xview,orient='horizontal')
+        self.text_output.config(xscrollcommand=self.text_xscrollbar.set)
+        self.text_yscrollbar = tk.Scrollbar(self.frame_text)
+        self.text_yscrollbar.config(command=self.text_output.yview)
+        self.text_output.config(yscrollcommand=self.text_yscrollbar.set)
 
         
     def gui_set_lb(self):
@@ -66,7 +70,7 @@ class MainApplication:
         self.lb_objects = tk.Listbox(
                 self.frame_text,
                 height=20,
-                width=30,
+                width=40,
                 selectmode='single',
                 exportselection=False)
         self.lb_objects.bind("<<ListboxSelect>>",self.cmd_selection)
@@ -124,14 +128,14 @@ class MainApplication:
         self.optionmenu_objects.grid(row=4,column=2,sticky='NSEW',padx=5,pady=5)
         
         self.frame_text.pack(fill='both',expand=1,padx=5,pady=5)
-        self.frame_text.columnconfigure(1,weight=1)
         self.frame_text.columnconfigure(3,weight=1)
         self.frame_text.rowconfigure(1,weight=1)
         self.lb_objects.grid(row=1,column=1,sticky='NSEW')
         self.lb_scrollbar_x.grid(row=2,column=1,sticky='NSEW')
         self.lb_scrollbar_y.grid(row=1,column=2,sticky='NSEW')
         self.text_output.grid(row=1,column=3,sticky='NSEW')
-        self.scrollbar.grid(row=1,column=4,sticky='NSEW')
+        self.text_xscrollbar.grid(row=2,column=3,sticky='NSEW')
+        self.text_yscrollbar.grid(row=1,column=4,sticky='NSEW')
         
         self.button_edit.grid(row=3,columnspan=5,sticky='NSEW',padx=5,pady=5)
         self.button_save.grid(row=4,columnspan=5,sticky='NSEW',padx=5,pady=5)
@@ -155,6 +159,7 @@ class MainApplication:
                 title='Choose a .def file',
                 filetypes=(              
                         ("Solver input file", "*.def"),
+                        ("Result file", "*.res"),
                         ("All files", "*.*") ) )
         
         if temp:
@@ -187,7 +192,7 @@ class MainApplication:
         
         if os.path.exists(self.ccl_orig):
             os.remove(self.ccl_orig)
-        os.system('cfx5cmds -read -def '+inputfile+' -ccl '+self.ccl_orig);
+        os.system('cfx5dfile -read-cmds '+inputfile+' -output '+self.ccl_orig);
         with open(self.ccl_orig) as fp:
             for line in fp:
                 self.orig_setup.append(line.rstrip())                
@@ -209,10 +214,20 @@ class MainApplication:
     
     def search_obj(self,obj_type):
         self.objects = []
-        if (obj_type=='Boundary'):
+        if obj_type == 'Boundary':
             for line in self.orig_setup:
                 if (obj_type.upper()+':' in line and 'Side ' not in line):
                     self.objects.append(line.split(':')[1].lstrip(' ').rstrip(' '))
+        elif obj_type == 'Expressions':
+            for idx,line in enumerate(self.orig_setup):
+                space = len(line) - len(line.lstrip(' '))
+                if (obj_type.upper()+':' in line):
+                    fidx = idx
+                elif ('END' in line and space == 4):
+                    lidx = idx
+                    break
+            self.expressions = self.orig_setup[fidx:lidx]  
+            self.insert_text(self.expressions)
         else:
             for line in self.orig_setup:
                 if (obj_type.upper()+':' in line):

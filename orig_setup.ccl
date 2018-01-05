@@ -11,14 +11,11 @@ LIBRARY:
       TsIFOutletGas = areaAve(Temperature)@FFIF_OUTLET_GAS Side 1 -273.15 [K]
       TsInletGas = areaAve(Temperature)@BC_INLET_GAS -273.15 [K]
       TsOutletGas = areaAve(Temperature)@BC_OUTLET_GAS -273.15 [K]
-      cp Air = 1039.6[J kg^-1 K^-1]-0.2889[J kg^-1 K^-2]*T+0.000693[J kg^-1 \
-        K^-3]*T^2-0.0000003[J kg^-1 K^-4]*T^3
       cp Air BW 2015 = 1.061069e+3 [J kg^-1 K^-1]-4.694907e-1 [J kg^-1 \
         K^-2]*T+1.183034e-3 [J kg^-1 K^-3]*T^2-8.287484e-7 [J kg^-1 \
         K^-4]*T^3+1.956834e-10 [J kg^-1 K^-5]*T^4
       cp WG 5050 BW 2015 = 2.488895e+3 [J kg^-1 K^-1] + 3.1807 [J kg^-1 K^-2] \
         * T - 1.4515e-8 [J kg^-1 K^-3]*T^2
-      density Air = 101325 [Pa] / 287 [J kg^-1 K^-1] /T
       eta Air BW 2015 = 2.480350e-6 [kg m^-1 s^-1] + 6.094130e-8 [kg m^-1 \
         s^-1 K^-1]*T - 2.688170e-11 [kg m^-1 s^-1 K^-2]*T^2 + 6.891019e-15 \
         [kg m^-1 s^-1 K^-3]*T^3
@@ -31,8 +28,6 @@ LIBRARY:
         K^-4]*T^3
       lambda WG 5050 BW 2015 = 0.221896 [W m^-1 K^-1] + 1.2759e-3 [W m^-1 \
         K^-2]*T - 2.1798e-6 [W m^-1 K^-3]*T^2
-      lambda sutherland = 0.02621 [W m^-1 K^-1] * ( 298.15 [K] + 4500 [K] ) / \
-        ( T + 4500 [K] ) * ( T / 298.15 [K] )^0.9
       mfIFInletGas = massFlow()@FFIF_INLET_GAS Side 1
       mfIFOutletGas = massFlow()@FFIF_OUTLET_GAS Side 1
       mfInletGas = massFlow()@BC_INLET_GAS
@@ -48,134 +43,6 @@ LIBRARY:
       rho Air Solid BW 2015 = 101325 [Pa] / 287 [J kg^-1 K^-1] / T
       rho WG 5050 BW 2015 = 1108.62 [kg m^-3] + 2.8938e-1 [kg m^-3 K^-1] * T \
         - 1.4644e-3 [kg m^-3 K^-2]*T^2
-      tsaveSldBearingHousing = volumeAve(Temperature)@SLD_BEARING_HOUSING
-      tsaveSldBracket1 = volumeAve(Temperature)@SLD_BRACKET_1
-      tsaveSldBracket2 = volumeAve(Temperature)@SLD_BRACKET_2
-      tsaveSldBushing1 = volumeAve(Temperature)@SLD_BUSHING_1
-      tsaveSldBushing2 = volumeAve(Temperature)@SLD_BUSHING_2
-      tsaveSldCap = volumeAve(Temperature)@SLD_CAP
-      tsaveSldCapBushing = volumeAve(Temperature)@SLD_CAP_BUSHING
-      tsaveSldDcMotor = volumeAve(Temperature)@SLD_DC_MOTOR
-      tsaveSldGas = volumeAve(Temperature)@SLD_GAS
-      tsaveSldHousingActuator = volumeAve(Temperature)@SLD_HOUSING_ACTUATOR
-      tsaveSldHousingTubeMachined = \
-        volumeAve(Temperature)@SLD_HOUSING_TUBE_MACHINED
-      tsaveSldInsulationGlimmerBottom = \
-        volumeAve(Temperature)@SLD_INSULATION_GLIMMER_BOTTOM
-      tsaveSldInsulationGlimmerTop = \
-        volumeAve(Temperature)@SLD_INSULATION_GLIMMER_TOP
-      tsaveSldInsulationSteel = volumeAve(Temperature)@SLD_INSULATION_STEEL
-      tsaveSldLever1 = volumeAve(Temperature)@SLD_LEVER_1
-      tsaveSldLever2 = volumeAve(Temperature)@SLD_LEVER_2
-      tsaveSldNut1 = volumeAve(Temperature)@SLD_NUT_1
-      tsaveSldNut2 = volumeAve(Temperature)@SLD_NUT_2
-      tsaveSldNut3 = volumeAve(Temperature)@SLD_NUT_3
-      tsaveSldPinGas1 = volumeAve(Temperature)@SLD_PIN_GAS_1
-      tsaveSldPinGas2 = volumeAve(Temperature)@SLD_PIN_GAS_2
-      tsaveSldRetainer = volumeAve(Temperature)@SLD_RETAINER
-      tsaveSldRetainerBushing1 = volumeAve(Temperature)@SLD_RETAINER_BUSHING_1
-      tsaveSldRetainerBushing2 = volumeAve(Temperature)@SLD_RETAINER_BUSHING_2
-      tsaveSldRetainerSpring = volumeAve(Temperature)@SLD_RETAINER_SPRING
-      tsaveSldRolledBushingPtfe = \
-        volumeAve(Temperature)@SLD_ROLLED_BUSHING_PTFE
-      tsaveSldRolledBushingSteel = \
-        volumeAve(Temperature)@SLD_ROLLED_BUSHING_STEEL
-      tsaveSldScrew1 = volumeAve(Temperature)@SLD_SCREW_1
-      tsaveSldScrew2 = volumeAve(Temperature)@SLD_SCREW_2
-      tsaveSldScrew3 = volumeAve(Temperature)@SLD_SCREW_3
-      tsaveSldSealingFkm = volumeAve(Temperature)@SLD_SEALING_FKM
-      tsaveSldSealingSteel = volumeAve(Temperature)@SLD_SEALING_STEEL
-      tsaveSldSensorCover = volumeAve(Temperature)@SLD_SENSOR_COVER
-      tsaveSldShaft = volumeAve(Temperature)@SLD_SHAFT
-      tsaveSldShaftOutput = volumeAve(Temperature)@SLD_SHAFT_OUTPUT
-      tsaveSldSpring = volumeAve(Temperature)@SLD_SPRING
-      tsaveSldValvePlate = volumeAve(Temperature)@SLD_VALVE_PLATE
-      tsaveSldWasher = volumeAve(Temperature)@SLD_WASHER
-      tsaveSldWasherScraper = volumeAve(Temperature)@SLD_WASHER_SCRAPER
-      tsmaxSldBearingHousing = maxVal(Temperature)@SLD_BEARING_HOUSING
-      tsmaxSldBracket1 = maxVal(Temperature)@SLD_BRACKET_1
-      tsmaxSldBracket2 = maxVal(Temperature)@SLD_BRACKET_2
-      tsmaxSldBushing1 = maxVal(Temperature)@SLD_BUSHING_1
-      tsmaxSldBushing2 = maxVal(Temperature)@SLD_BUSHING_2
-      tsmaxSldCap = maxVal(Temperature)@SLD_CAP
-      tsmaxSldCapBushing = maxVal(Temperature)@SLD_CAP_BUSHING
-      tsmaxSldDcMotor = maxVal(Temperature)@SLD_DC_MOTOR
-      tsmaxSldGas = maxVal(Temperature)@SLD_GAS
-      tsmaxSldHousingActuator = maxVal(Temperature)@SLD_HOUSING_ACTUATOR
-      tsmaxSldHousingTubeMachined = \
-        maxVal(Temperature)@SLD_HOUSING_TUBE_MACHINED
-      tsmaxSldInsulationGlimmerBottom = \
-        maxVal(Temperature)@SLD_INSULATION_GLIMMER_BOTTOM
-      tsmaxSldInsulationGlimmerTop = \
-        maxVal(Temperature)@SLD_INSULATION_GLIMMER_TOP
-      tsmaxSldInsulationSteel = maxVal(Temperature)@SLD_INSULATION_STEEL
-      tsmaxSldLever1 = maxVal(Temperature)@SLD_LEVER_1
-      tsmaxSldLever2 = maxVal(Temperature)@SLD_LEVER_2
-      tsmaxSldNut1 = maxVal(Temperature)@SLD_NUT_1
-      tsmaxSldNut2 = maxVal(Temperature)@SLD_NUT_2
-      tsmaxSldNut3 = maxVal(Temperature)@SLD_NUT_3
-      tsmaxSldPinGas1 = maxVal(Temperature)@SLD_PIN_GAS_1
-      tsmaxSldPinGas2 = maxVal(Temperature)@SLD_PIN_GAS_2
-      tsmaxSldRetainer = maxVal(Temperature)@SLD_RETAINER
-      tsmaxSldRetainerBushing1 = maxVal(Temperature)@SLD_RETAINER_BUSHING_1
-      tsmaxSldRetainerBushing2 = maxVal(Temperature)@SLD_RETAINER_BUSHING_2
-      tsmaxSldRetainerSpring = maxVal(Temperature)@SLD_RETAINER_SPRING
-      tsmaxSldRolledBushingPtfe = maxVal(Temperature)@SLD_ROLLED_BUSHING_PTFE
-      tsmaxSldRolledBushingSteel = maxVal(Temperature)@SLD_ROLLED_BUSHING_STEEL
-      tsmaxSldScrew1 = maxVal(Temperature)@SLD_SCREW_1
-      tsmaxSldScrew2 = maxVal(Temperature)@SLD_SCREW_2
-      tsmaxSldScrew3 = maxVal(Temperature)@SLD_SCREW_3
-      tsmaxSldSealingFkm = maxVal(Temperature)@SLD_SEALING_FKM
-      tsmaxSldSealingSteel = maxVal(Temperature)@SLD_SEALING_STEEL
-      tsmaxSldSensorCover = maxVal(Temperature)@SLD_SENSOR_COVER
-      tsmaxSldShaft = maxVal(Temperature)@SLD_SHAFT
-      tsmaxSldShaftOutput = maxVal(Temperature)@SLD_SHAFT_OUTPUT
-      tsmaxSldSpring = maxVal(Temperature)@SLD_SPRING
-      tsmaxSldValvePlate = maxVal(Temperature)@SLD_VALVE_PLATE
-      tsmaxSldWasher = maxVal(Temperature)@SLD_WASHER
-      tsmaxSldWasherScraper = maxVal(Temperature)@SLD_WASHER_SCRAPER
-      tsminSldBearingHousing = minVal(Temperature)@SLD_BEARING_HOUSING
-      tsminSldBracket1 = minVal(Temperature)@SLD_BRACKET_1
-      tsminSldBracket2 = minVal(Temperature)@SLD_BRACKET_2
-      tsminSldBushing1 = minVal(Temperature)@SLD_BUSHING_1
-      tsminSldBushing2 = minVal(Temperature)@SLD_BUSHING_2
-      tsminSldCap = minVal(Temperature)@SLD_CAP
-      tsminSldCapBushing = minVal(Temperature)@SLD_CAP_BUSHING
-      tsminSldDcMotor = minVal(Temperature)@SLD_DC_MOTOR
-      tsminSldGas = minVal(Temperature)@SLD_GAS
-      tsminSldHousingActuator = minVal(Temperature)@SLD_HOUSING_ACTUATOR
-      tsminSldHousingTubeMachined = \
-        minVal(Temperature)@SLD_HOUSING_TUBE_MACHINED
-      tsminSldInsulationGlimmerBottom = \
-        minVal(Temperature)@SLD_INSULATION_GLIMMER_BOTTOM
-      tsminSldInsulationGlimmerTop = \
-        minVal(Temperature)@SLD_INSULATION_GLIMMER_TOP
-      tsminSldInsulationSteel = minVal(Temperature)@SLD_INSULATION_STEEL
-      tsminSldLever1 = minVal(Temperature)@SLD_LEVER_1
-      tsminSldLever2 = minVal(Temperature)@SLD_LEVER_2
-      tsminSldNut1 = minVal(Temperature)@SLD_NUT_1
-      tsminSldNut2 = minVal(Temperature)@SLD_NUT_2
-      tsminSldNut3 = minVal(Temperature)@SLD_NUT_3
-      tsminSldPinGas1 = minVal(Temperature)@SLD_PIN_GAS_1
-      tsminSldPinGas2 = minVal(Temperature)@SLD_PIN_GAS_2
-      tsminSldRetainer = minVal(Temperature)@SLD_RETAINER
-      tsminSldRetainerBushing1 = minVal(Temperature)@SLD_RETAINER_BUSHING_1
-      tsminSldRetainerBushing2 = minVal(Temperature)@SLD_RETAINER_BUSHING_2
-      tsminSldRetainerSpring = minVal(Temperature)@SLD_RETAINER_SPRING
-      tsminSldRolledBushingPtfe = minVal(Temperature)@SLD_ROLLED_BUSHING_PTFE
-      tsminSldRolledBushingSteel = minVal(Temperature)@SLD_ROLLED_BUSHING_STEEL
-      tsminSldScrew1 = minVal(Temperature)@SLD_SCREW_1
-      tsminSldScrew2 = minVal(Temperature)@SLD_SCREW_2
-      tsminSldScrew3 = minVal(Temperature)@SLD_SCREW_3
-      tsminSldSealingFkm = minVal(Temperature)@SLD_SEALING_FKM
-      tsminSldSealingSteel = minVal(Temperature)@SLD_SEALING_STEEL
-      tsminSldSensorCover = minVal(Temperature)@SLD_SENSOR_COVER
-      tsminSldShaft = minVal(Temperature)@SLD_SHAFT
-      tsminSldShaftOutput = minVal(Temperature)@SLD_SHAFT_OUTPUT
-      tsminSldSpring = minVal(Temperature)@SLD_SPRING
-      tsminSldValvePlate = minVal(Temperature)@SLD_VALVE_PLATE
-      tsminSldWasher = minVal(Temperature)@SLD_WASHER
-      tsminSldWasherScraper = minVal(Temperature)@SLD_WASHER_SCRAPER
       vfIFInletGas = massFlow()@FFIF_INLET_GAS Side 1 / \
         areaAve(Density)@FFIF_INLET_GAS Side 1
       vfIFOutletGas = massFlow()@FFIF_OUTLET_GAS Side 1 / \
@@ -493,9 +360,7 @@ LIBRARY:
       Option = Interpolation
       Result Units = J/kg/K
       INTERPOLATION DATA:
-        Data Pairs = \
-          20,470,100,500,200,530,300,530,400,560,500,580,600,600,700,610,800,6\
-          10
+        Data Pairs = 20,500,200,510,400,550,600,585,800,630
         Extend Max = On
         Extend Min = On
         Option = One Dimensional
@@ -506,9 +371,7 @@ LIBRARY:
       Option = Interpolation
       Result Units = W/m/K
       INTERPOLATION DATA:
-        Data Pairs = \
-          20,15,100,16.5,200,18,300,19.5,400,21,500,22.5,600,24,700,25,800,26.\
-          5,900,28,1000,29
+        Data Pairs = 20,15,100,16.3,200,17.5,300,19.9,400,21.5,800,25.1
         Extend Max = On
         Extend Min = On
         Option = One Dimensional
@@ -688,43 +551,38 @@ LIBRARY:
       END
     END
   END
-  MATERIAL: Air Ideal Gas MH
-    Material Description = Air Ideal Gas with variabel cp, eta, lamda
+  MATERIAL: Air Ideal Gas BW 2015
+    Material Description = Air Ideal Gas with variabel cp, eta, lamda given \
+      by formulas from University of Viga / STC
     Material Group = User
     Option = Pure Substance
     Thermodynamic State = Gas
     PROPERTIES:
       Option = General Material
       EQUATION OF STATE:
-        Molar Mass = 28.96 [kg kmol^-1]
+        Molar Mass = 28.959 [kg kmol^-1]
         Option = Ideal Gas
       END
       SPECIFIC HEAT CAPACITY:
         Option = Value
-        Specific Heat Capacity = cp Air
+        Specific Heat Capacity = cp Air BW 2015
         Specific Heat Type = Constant Pressure
       END
       TABLE GENERATION:
         Maximum Absolute Pressure = 1.0E6 [Pa]
-        Maximum Temperature = 900 [C]
+        Maximum Temperature = 1000 [C]
         Minimum Absolute Pressure = 1000.0 [Pa]
         Minimum Temperature = -50 [C]
         Pressure Extrapolation = No
         Temperature Extrapolation = Off
       END
       DYNAMIC VISCOSITY:
-        Option = Sutherlands Formula
-        Reference Temperature = 18 [C]
-        Reference Viscosity = 18.27e-6 [Pa s]
-        Sutherlands Constant = 120 [K]
-        Temperature Exponent = 1.5
+        Dynamic Viscosity = eta Air BW 2015
+        Option = Value
       END
       THERMAL CONDUCTIVITY:
-        Option = Sutherlands Formula
-        Reference Temperature = 25 [C]
-        Reference Thermal Conductivity = 0.02621 [W m^-1 K^-1]
-        Sutherlands Constant = 4500 [K]
-        Temperature Exponent = 0.9
+        Option = Value
+        Thermal Conductivity = lambda Air BW 2015
       END
       ABSORPTION COEFFICIENT:
         Absorption Coefficient = 0.01 [m^-1]
@@ -740,32 +598,34 @@ LIBRARY:
       END
     END
   END
-  MATERIAL: Air Solid Ideal Gas MH
-    Material Description = Air Ideal Gas with variabel cp, lamda as solid for \
-      very small gaps and 1D-problems
+  MATERIAL: Air Solid Ideal Gas BW 2015
+    Material Description = Air Solid Ideal Gas with variabel cp, eta, lamda \
+      given by formulas from University of Viga / STC
     Material Group = User
     Option = Pure Substance
     Thermodynamic State = Solid
     PROPERTIES:
       Option = General Material
       EQUATION OF STATE:
-        Density = density Air
-        Molar Mass = 28.96 [kg kmol^-1]
+        Density = rho Air Solid BW 2015
+        Molar Mass = 28.959 [kg kmol^-1]
         Option = Value
       END
       SPECIFIC HEAT CAPACITY:
         Option = Value
-        Specific Heat Capacity = cp Air
+        Specific Heat Capacity = cp Air BW 2015
       END
       TABLE GENERATION:
         Maximum Absolute Pressure = 1.0E6 [Pa]
-        Maximum Temperature = 900 [C]
+        Maximum Temperature = 1000 [C]
         Minimum Absolute Pressure = 1000.0 [Pa]
         Minimum Temperature = -50 [C]
+        Pressure Extrapolation = No
+        Temperature Extrapolation = Off
       END
       THERMAL CONDUCTIVITY:
         Option = Value
-        Thermal Conductivity = lambda sutherland
+        Thermal Conductivity = lambda Air BW 2015
       END
       ABSORPTION COEFFICIENT:
         Absorption Coefficient = 0.01 [m^-1]
@@ -778,33 +638,6 @@ LIBRARY:
       REFRACTIVE INDEX:
         Option = Value
         Refractive Index = 1.0 [m m^-1]
-      END
-    END
-  END
-  MATERIAL: AirAsSolid400C
-    Material Group = CHT Solids,Particle Solids
-    Option = Pure Substance
-    Thermodynamic State = Solid
-    PROPERTIES:
-      Option = General Material
-      EQUATION OF STATE:
-        Density = 0.517 [kg m^-3]
-        Molar Mass = 28.96 [kg kmol^-1]
-        Option = Value
-      END
-      SPECIFIC HEAT CAPACITY:
-        Option = Value
-        Specific Heat Capacity = 1069 [J kg^-1 K^-1]
-      END
-      REFERENCE STATE:
-        Option = Specified Point
-        Reference Specific Enthalpy = 0 [J/kg]
-        Reference Specific Entropy = 0 [J/kg/K]
-        Reference Temperature = 400 [C]
-      END
-      THERMAL CONDUCTIVITY:
-        Option = Value
-        Thermal Conductivity = 0.04996 [W m^-1 K^-1]
       END
     END
   END
@@ -918,33 +751,6 @@ LIBRARY:
       END
     END
   END
-  MATERIAL: Steel for DC
-    Material Group = CHT Solids,Particle Solids
-    Option = Pure Substance
-    Thermodynamic State = Solid
-    PROPERTIES:
-      Option = General Material
-      EQUATION OF STATE:
-        Density = 7854 [kg m^-3]
-        Molar Mass = 55.85 [kg kmol^-1]
-        Option = Value
-      END
-      SPECIFIC HEAT CAPACITY:
-        Option = Value
-        Specific Heat Capacity = 4.34E+02 [J kg^-1 K^-1]
-      END
-      REFERENCE STATE:
-        Option = Specified Point
-        Reference Specific Enthalpy = 0 [J/kg]
-        Reference Specific Entropy = 0 [J/kg/K]
-        Reference Temperature = 25 [C]
-      END
-      THERMAL CONDUCTIVITY:
-        Option = Value
-        Thermal Conductivity = 60 [W m^-1 K^-1]
-      END
-    END
-  END
   MATERIAL: Steel14301 variabel
     Material Description = Stahl 1.4301 mit temperaturabhängigem lambda und \
       cp aus dem VDI-Wärmeatlas
@@ -975,7 +781,7 @@ LIBRARY:
     END
   END
   MATERIAL: Variabel 1 4006
-    Material Group = CHT Solids,Particle Solids
+    Material Group = User
     Option = Pure Substance
     Thermodynamic State = Solid
     PROPERTIES:
@@ -995,6 +801,12 @@ LIBRARY:
         Reference Specific Entropy = 0 [J/kg/K]
         Reference Temperature = 25 [C]
       END
+      TABLE GENERATION:
+        Maximum Temperature = 1000 [C]
+        Minimum Temperature = 100 [C]
+        Pressure Extrapolation = Off
+        Temperature Extrapolation = Off
+      END
       THERMAL CONDUCTIVITY:
         Option = Value
         Thermal Conductivity = Thermal conductivity of 1 4006(T)
@@ -1002,7 +814,7 @@ LIBRARY:
     END
   END
   MATERIAL: Variabel 1 4016
-    Material Group = CHT Solids,Particle Solids
+    Material Group = User
     Option = Pure Substance
     Thermodynamic State = Solid
     PROPERTIES:
@@ -1022,6 +834,12 @@ LIBRARY:
         Reference Specific Entropy = 0 [J/kg/K]
         Reference Temperature = 25 [C]
       END
+      TABLE GENERATION:
+        Maximum Temperature = 1000 [C]
+        Minimum Temperature = 100 [C]
+        Pressure Extrapolation = No
+        Temperature Extrapolation = Off
+      END
       THERMAL CONDUCTIVITY:
         Option = Value
         Thermal Conductivity = Thermal conductivity of 1 4016(T)
@@ -1029,7 +847,7 @@ LIBRARY:
     END
   END
   MATERIAL: Variabel 1 4125
-    Material Group = CHT Solids,Particle Solids
+    Material Group = User
     Option = Pure Substance
     Thermodynamic State = Solid
     PROPERTIES:
@@ -1049,6 +867,12 @@ LIBRARY:
         Reference Specific Entropy = 0 [J/kg/K]
         Reference Temperature = 25 [C]
       END
+      TABLE GENERATION:
+        Maximum Temperature = 1000 [C]
+        Minimum Temperature = 100 [C]
+        Pressure Extrapolation = No
+        Temperature Extrapolation = Off
+      END
       THERMAL CONDUCTIVITY:
         Option = Value
         Thermal Conductivity = Thermal conductivity of 1 4125(T)
@@ -1056,7 +880,7 @@ LIBRARY:
     END
   END
   MATERIAL: Variabel 1 4300
-    Material Group = CHT Solids,Particle Solids
+    Material Group = User
     Option = Pure Substance
     Thermodynamic State = Solid
     PROPERTIES:
@@ -1076,6 +900,12 @@ LIBRARY:
         Reference Specific Entropy = 0 [J/kg/K]
         Reference Temperature = 25 [C]
       END
+      TABLE GENERATION:
+        Maximum Temperature = 1000 [C]
+        Minimum Temperature = 100 [C]
+        Pressure Extrapolation = No
+        Temperature Extrapolation = Off
+      END
       THERMAL CONDUCTIVITY:
         Option = Value
         Thermal Conductivity = Thermal conductivity of 1 4300(T)
@@ -1083,7 +913,7 @@ LIBRARY:
     END
   END
   MATERIAL: Variabel 1 4307
-    Material Group = CHT Solids,Particle Solids
+    Material Group = User
     Option = Pure Substance
     Thermodynamic State = Solid
     PROPERTIES:
@@ -1103,6 +933,12 @@ LIBRARY:
         Reference Specific Entropy = 0 [J/kg/K]
         Reference Temperature = 25 [C]
       END
+      TABLE GENERATION:
+        Maximum Temperature = 1000 [C]
+        Minimum Temperature = 100 [C]
+        Pressure Extrapolation = No
+        Temperature Extrapolation = Off
+      END
       THERMAL CONDUCTIVITY:
         Option = Value
         Thermal Conductivity = Thermal conductivity of 1 4307(T)
@@ -1110,7 +946,7 @@ LIBRARY:
     END
   END
   MATERIAL: Variabel 1 4401
-    Material Group = CHT Solids,Particle Solids
+    Material Group = User
     Option = Pure Substance
     Thermodynamic State = Solid
     PROPERTIES:
@@ -1130,6 +966,12 @@ LIBRARY:
         Reference Specific Entropy = 0 [J/kg/K]
         Reference Temperature = 25 [C]
       END
+      TABLE GENERATION:
+        Maximum Temperature = 1000 [C]
+        Minimum Temperature = 100 [C]
+        Pressure Extrapolation = No
+        Temperature Extrapolation = Off
+      END
       THERMAL CONDUCTIVITY:
         Option = Value
         Thermal Conductivity = Thermal conductivity of 1 4401(T)
@@ -1137,7 +979,7 @@ LIBRARY:
     END
   END
   MATERIAL: Variabel 1 4404
-    Material Group = CHT Solids,Particle Solids
+    Material Group = User
     Option = Pure Substance
     Thermodynamic State = Solid
     PROPERTIES:
@@ -1157,6 +999,12 @@ LIBRARY:
         Reference Specific Entropy = 0 [J/kg/K]
         Reference Temperature = 25 [C]
       END
+      TABLE GENERATION:
+        Maximum Temperature = 1000 [C]
+        Minimum Temperature = 100 [C]
+        Pressure Extrapolation = No
+        Temperature Extrapolation = Off
+      END
       THERMAL CONDUCTIVITY:
         Option = Value
         Thermal Conductivity = Thermal conductivity of 1 4404(T)
@@ -1164,7 +1012,7 @@ LIBRARY:
     END
   END
   MATERIAL: Variabel Inconel 718
-    Material Group = CHT Solids,Particle Solids
+    Material Group = User
     Option = Pure Substance
     Thermodynamic State = Solid
     PROPERTIES:
@@ -1184,6 +1032,12 @@ LIBRARY:
         Reference Specific Entropy = 0 [J/kg/K]
         Reference Temperature = 25 [C]
       END
+      TABLE GENERATION:
+        Maximum Temperature = 1000 [C]
+        Minimum Temperature = 100 [C]
+        Pressure Extrapolation = No
+        Temperature Extrapolation = Off
+      END
       THERMAL CONDUCTIVITY:
         Option = Value
         Thermal Conductivity = Thermal conductivity of Inconel 718(T)
@@ -1191,7 +1045,7 @@ LIBRARY:
     END
   END
   MATERIAL: Variabel Nitronic 60
-    Material Group = CHT Solids,Particle Solids
+    Material Group = User
     Option = Pure Substance
     Thermodynamic State = Solid
     PROPERTIES:
@@ -1210,6 +1064,12 @@ LIBRARY:
         Reference Specific Enthalpy = 0 [J/kg]
         Reference Specific Entropy = 0 [J/kg/K]
         Reference Temperature = 25 [C]
+      END
+      TABLE GENERATION:
+        Maximum Temperature = 1000 [C]
+        Minimum Temperature = 100 [C]
+        Pressure Extrapolation = No
+        Temperature Extrapolation = Off
       END
       THERMAL CONDUCTIVITY:
         Option = Value
@@ -1338,6 +1198,21 @@ FLOW: Flow Analysis 1
         END
       END
     END
+    BOUNDARY: FLD_GAS Default
+      Boundary Type = WALL
+      Location = WL_INLET_GAS,WL_OUTLET_GAS
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Adiabatic
+        END
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
     BOUNDARY: FSIF_GAS_BUSHING_1 Side 1
       Boundary Type = INTERFACE
       Location = sld_bushing_1
@@ -1368,9 +1243,9 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: FSIF_GAS_GAS Side 1
+    BOUNDARY: FSIF_GAS_GAS_1 Side 1
       Boundary Type = INTERFACE
-      Location = sld_gas
+      Location = sld_gas_1
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1385,8 +1260,8 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: FSIF_GAS_HOUSING_TUBE_MACHINED Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_tube_machined 324,sld_housing_tube_machined \
-        326,sld_housing_tube_machined 328
+      Location = sld_housing_tube_machined 325,sld_housing_tube_machined \
+        328,sld_housing_tube_machined 329
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1446,7 +1321,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: FSIF_GAS_RETAINER_BUSHING_2 Side 1
       Boundary Type = INTERFACE
-      Location = sld_retainer_bushing_2 351
+      Location = sld_retainer_bushing_2 346
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1461,7 +1336,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: FSIF_GAS_SHAFT Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D K,Primitive 2D L,Primitive 2D M
+      Location = Primitive 2D N,Primitive 2D O,Primitive 2D P
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1504,36 +1379,6 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: WL_INLET_GAS
-      Boundary Type = WALL
-      Location = WL_INLET_GAS
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Adiabatic
-        END
-        MASS AND MOMENTUM:
-          Option = No Slip Wall
-        END
-        WALL ROUGHNESS:
-          Option = Smooth Wall
-        END
-      END
-    END
-    BOUNDARY: WL_OUTLET_GAS
-      Boundary Type = WALL
-      Location = WL_OUTLET_GAS
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Adiabatic
-        END
-        MASS AND MOMENTUM:
-          Option = No Slip Wall
-        END
-        WALL ROUGHNESS:
-          Option = Smooth Wall
-        END
-      END
-    END
     DOMAIN MODELS:
       BUOYANCY MODEL:
         Option = Non Buoyant
@@ -1549,7 +1394,7 @@ FLOW: Flow Analysis 1
       END
     END
     FLUID DEFINITION: Fluid 1
-      Material = Air Ideal Gas MH
+      Material = Air Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Fluid
@@ -1581,7 +1426,7 @@ FLOW: Flow Analysis 1
     Location = sld_air_00
     BOUNDARY: SSIF_AIR_00_BRACKET_2 Side 1
       Boundary Type = INTERFACE
-      Location = sld_bracket_2 344
+      Location = sld_bracket_2 342
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1590,7 +1435,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_CAP_BUSHING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D N,Primitive 2D O
+      Location = Primitive 2D Q,Primitive 2D R
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1599,7 +1444,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_HOUSING_ACTUATOR Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 376
+      Location = sld_housing_actuator 377
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1609,7 +1454,7 @@ FLOW: Flow Analysis 1
     BOUNDARY: SSIF_AIR_00_HOUSING_TUBE_MACHINED Side 1
       Boundary Type = INTERFACE
       Location = sld_housing_tube_machined,sld_housing_tube_machined \
-        325,sld_housing_tube_machined 327
+        326,sld_housing_tube_machined 327
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1618,7 +1463,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_INSULATION_GLIMMER_BOTTOM Side 1
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_bottom 333
+      Location = sld_insulation_glimmer_bottom
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1645,7 +1490,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_PIN_GAS_2 Side 1
       Boundary Type = INTERFACE
-      Location = sld_pin_gas_2 349
+      Location = sld_pin_gas_2 344
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1654,7 +1499,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_RETAINER_BUSHING_1 Side 1
       Boundary Type = INTERFACE
-      Location = sld_retainer_bushing_1 350
+      Location = sld_retainer_bushing_1 345
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1699,7 +1544,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_SHAFT_OUTPUT Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D R,Primitive 2D S
+      Location = Primitive 2D U,Primitive 2D V
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1733,7 +1578,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -1880,7 +1725,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_01_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = sld_bearing_housing 386
+      Location = sld_bearing_housing 409
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1896,7 +1741,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -1917,7 +1762,7 @@ FLOW: Flow Analysis 1
     Location = sld_air_02
     BOUNDARY: SSIF_AIR_02_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = sld_bearing_housing 381
+      Location = sld_bearing_housing 382
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1926,7 +1771,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_02_HOUSING_ACTUATOR Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 375
+      Location = sld_housing_actuator 376
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1953,7 +1798,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_02_SHAFT_OUTPUT Side 1
       Boundary Type = INTERFACE
-      Location = sld_shaft_output 369
+      Location = sld_shaft_output 367
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1969,7 +1814,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -1988,9 +1833,9 @@ FLOW: Flow Analysis 1
     Coord Frame = Coord 0
     Domain Type = Solid
     Location = sld_air_03
-    BOUNDARY: SSIF_AIR_03_DC_MOTOR Side 1
+    BOUNDARY: SSIF_AIR_03_BRACKET_FLANGE Side 1
       Boundary Type = INTERFACE
-      Location = sld_dc_motor 365
+      Location = sld_bracket_flange 357
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -1999,7 +1844,52 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_03_HOUSING_ACTUATOR Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 374
+      Location = sld_housing_actuator 379
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_AIR_03_INSULATION_GLIMMER_BOTTOM Side 1
+      Boundary Type = INTERFACE
+      Location = sld_insulation_glimmer_bottom 335
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_AIR_03_INSULATION_GLIMMER_TOP Side 1
+      Boundary Type = INTERFACE
+      Location = sld_insulation_glimmer_top 338
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_AIR_03_INSULATION_STEEL Side 1
+      Boundary Type = INTERFACE
+      Location = sld_insulation_steel 341
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_AIR_03_NUT_2 Side 1
+      Boundary Type = INTERFACE
+      Location = sld_nut_2 371
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_AIR_03_SCREW_1 Side 1
+      Boundary Type = INTERFACE
+      Location = sld_screw_4 348
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2015,7 +1905,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -2034,9 +1924,9 @@ FLOW: Flow Analysis 1
     Coord Frame = Coord 0
     Domain Type = Solid
     Location = sld_air_04
-    BOUNDARY: SSIF_AIR_04_BRACKET_2 Side 1
+    BOUNDARY: SSIF_AIR_04_BRACKET_FLANGE Side 1
       Boundary Type = INTERFACE
-      Location = sld_bracket_2 341
+      Location = sld_bracket_flange 358
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2054,7 +1944,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_04_INSULATION_GLIMMER_BOTTOM Side 1
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_bottom 329
+      Location = sld_insulation_glimmer_bottom 332
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2063,7 +1953,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_04_INSULATION_GLIMMER_TOP Side 1
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_top 337
+      Location = sld_insulation_glimmer_top 336
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2072,25 +1962,25 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_04_INSULATION_STEEL Side 1
       Boundary Type = INTERFACE
-      Location = sld_insulation_steel 340
+      Location = sld_insulation_steel 339
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_04_NUT_2 Side 1
+    BOUNDARY: SSIF_AIR_04_NUT_1 Side 1
       Boundary Type = INTERFACE
-      Location = sld_nut_2 346
+      Location = sld_nut_1 370
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_04_SCREW_1 Side 1
+    BOUNDARY: SSIF_AIR_04_SCREW_2 Side 1
       Boundary Type = INTERFACE
-      Location = sld_screw_1 354
+      Location = sld_screw_6 349
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2106,7 +1996,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -2125,9 +2015,9 @@ FLOW: Flow Analysis 1
     Coord Frame = Coord 0
     Domain Type = Solid
     Location = sld_air_05
-    BOUNDARY: SSIF_AIR_05_BRACKET_2 Side 1
+    BOUNDARY: SSIF_AIR_05_BRACKET_FLANGE Side 1
       Boundary Type = INTERFACE
-      Location = sld_bracket_2 342
+      Location = sld_bracket_flange
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2136,7 +2026,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_05_HOUSING_ACTUATOR Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 377
+      Location = sld_housing_actuator 380
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2145,7 +2035,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_05_INSULATION_GLIMMER_BOTTOM Side 1
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_bottom
+      Location = sld_insulation_glimmer_bottom 334
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2154,7 +2044,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_05_INSULATION_GLIMMER_TOP Side 1
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_top 335
+      Location = sld_insulation_glimmer_top 337
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2163,25 +2053,25 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_05_INSULATION_STEEL Side 1
       Boundary Type = INTERFACE
-      Location = sld_insulation_steel 338
+      Location = sld_insulation_steel 340
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_05_NUT_1 Side 1
+    BOUNDARY: SSIF_AIR_05_NUT_3 Side 1
       Boundary Type = INTERFACE
-      Location = sld_nut_1 345
+      Location = sld_nut_3 372
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_05_SCREW_2 Side 1
+    BOUNDARY: SSIF_AIR_05_SCREW_3 Side 1
       Boundary Type = INTERFACE
-      Location = sld_screw_2 355
+      Location = sld_screw_7 350
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2197,7 +2087,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -2216,9 +2106,9 @@ FLOW: Flow Analysis 1
     Coord Frame = Coord 0
     Domain Type = Solid
     Location = sld_air_06
-    BOUNDARY: SSIF_AIR_06_BRACKET_2 Side 1
+    BOUNDARY: SSIF_AIR_06_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = sld_bracket_2
+      Location = sld_bearing_housing
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2227,52 +2117,34 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_06_HOUSING_ACTUATOR Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 379
+      Location = sld_housing_actuator 381
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_06_INSULATION_GLIMMER_BOTTOM Side 1
+    BOUNDARY: SSIF_AIR_06_RETAINER Side 1
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_bottom 331
+      Location = sld_retainer
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_06_INSULATION_GLIMMER_TOP Side 1
+    BOUNDARY: SSIF_AIR_06_SEALING_FKM Side 1
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_top 336
+      Location = sld_sealing_fkm
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_06_INSULATION_STEEL Side 1
+    BOUNDARY: SSIF_AIR_06_SHAFT_OUTPUT Side 1
       Boundary Type = INTERFACE
-      Location = sld_insulation_steel 339
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_06_NUT_3 Side 1
-      Boundary Type = INTERFACE
-      Location = sld_nut_3 347
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_06_SCREW_3 Side 1
-      Boundary Type = INTERFACE
-      Location = sld_screw_3 356
+      Location = sld_shaft_output 368
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2288,7 +2160,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -2307,45 +2179,18 @@ FLOW: Flow Analysis 1
     Coord Frame = Coord 0
     Domain Type = Solid
     Location = sld_air_07
-    BOUNDARY: SSIF_AIR_07_BEARING_HOUSING Side 1
-      Boundary Type = INTERFACE
-      Location = sld_bearing_housing
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
     BOUNDARY: SSIF_AIR_07_HOUSING_ACTUATOR Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 380
+      Location = sld_housing_actuator
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_07_RETAINER Side 1
+    BOUNDARY: SSIF_AIR_07_SENSOR_COVER Side 1
       Boundary Type = INTERFACE
-      Location = sld_retainer
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_07_SEALING_FKM Side 1
-      Boundary Type = INTERFACE
-      Location = sld_sealing_fkm
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_07_SHAFT_OUTPUT Side 1
-      Boundary Type = INTERFACE
-      Location = sld_shaft_output 371
+      Location = sld_sensor_cover 356
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2361,7 +2206,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -2380,62 +2225,16 @@ FLOW: Flow Analysis 1
     Coord Frame = Coord 0
     Domain Type = Solid
     Location = sld_air_08
-    BOUNDARY: SSIF_AIR_08_HOUSING_ACTUATOR Side 1
+    BOUNDARY: SSIF_AIR_08_BUSHING_2 Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator
+      Location = sld_bushing_2 360
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_08_SENSOR_COVER Side 1
-      Boundary Type = INTERFACE
-      Location = sld_sensor_cover 362
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    DOMAIN MODELS:
-      DOMAIN MOTION:
-        Option = Stationary
-      END
-      MESH DEFORMATION:
-        Option = None
-      END
-    END
-    SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
-      Option = Material Library
-      MORPHOLOGY:
-        Option = Continuous Solid
-      END
-    END
-    SOLID MODELS:
-      HEAT TRANSFER MODEL:
-        Option = Thermal Energy
-      END
-      THERMAL RADIATION MODEL:
-        Option = None
-      END
-    END
-  END
-  DOMAIN: SLD_AIR_09
-    Coord Frame = Coord 0
-    Domain Type = Solid
-    Location = sld_air_09
-    BOUNDARY: SSIF_AIR_09_BUSHING_2 Side 1
-      Boundary Type = INTERFACE
-      Location = sld_bushing_2 363
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_09_CAP Side 1
+    BOUNDARY: SSIF_AIR_08_CAP Side 1
       Boundary Type = INTERFACE
       Location = sld_cap
       BOUNDARY CONDITIONS:
@@ -2444,9 +2243,9 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_AIR_09_SHAFT Side 1
+    BOUNDARY: SSIF_AIR_08_SHAFT Side 1
       Boundary Type = INTERFACE
-      Location = sld_shaft 368
+      Location = sld_shaft 365
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2462,7 +2261,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -2505,7 +2304,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_1_SENSOR_COVER Side 1
       Boundary Type = INTERFACE
-      Location = sld_sensor_cover 359
+      Location = sld_sensor_cover 353
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2521,7 +2320,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -2572,7 +2371,7 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_AIR_SENSOR_COVER_2_DC_MOTOR Side 1
+    BOUNDARY: SSIF_AIR_SENSOR_COVER_2_DC_MOTOR_2 Side 1
       Boundary Type = INTERFACE
       Location = sld_dc_motor
       BOUNDARY CONDITIONS:
@@ -2592,7 +2391,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_2_ROLLED_BUSHING_PTFE Side 1
       Boundary Type = INTERFACE
-      Location = sld_rolled_bushing_ptfe 352
+      Location = sld_rolled_bushing_ptfe 347
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2601,7 +2400,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_2_ROLLED_BUSHING_STEEL Side 1
       Boundary Type = INTERFACE
-      Location = sld_rolled_bushing_steel 353
+      Location = sld_rolled_bushing_steel 369
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2610,7 +2409,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_2_SENSOR_COVER Side 1
       Boundary Type = INTERFACE
-      Location = sld_sensor_cover 358
+      Location = sld_sensor_cover 352
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2619,7 +2418,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_2_SHAFT_OUTPUT Side 1
       Boundary Type = INTERFACE
-      Location = sld_shaft_output 370
+      Location = sld_shaft_output 366
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2635,7 +2434,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -2694,7 +2493,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -2736,7 +2535,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_4_SENSOR_COVER Side 1
       Boundary Type = INTERFACE
-      Location = sld_sensor_cover 360
+      Location = sld_sensor_cover 354
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2752,7 +2551,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -2770,7 +2569,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_1
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_1 528
+    Location = sld_bearing_ball_1 440
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_1 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_1 Shadow
@@ -2782,7 +2581,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_1_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D DU,Primitive 2D DV
+      Location = Primitive 2D DE,Primitive 2D DF
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2816,7 +2615,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_10
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_10 511
+    Location = sld_bearing_ball_10 458
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_10 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_10 Shadow
@@ -2828,7 +2627,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_10_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D EM,Primitive 2D EN
+      Location = Primitive 2D DW,Primitive 2D DX
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2862,7 +2661,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_11
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_11 530
+    Location = sld_bearing_ball_11 439
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_11 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_11 Shadow
@@ -2874,7 +2673,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_11_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D EO,Primitive 2D EP
+      Location = Primitive 2D DY,Primitive 2D DZ
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2908,7 +2707,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_12
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_12 525
+    Location = sld_bearing_ball_12 455
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_12 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_12 Shadow
@@ -2920,7 +2719,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_12_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D EQ,Primitive 2D ER
+      Location = Primitive 2D EA,Primitive 2D EB
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -2954,7 +2753,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_13
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_13 531
+    Location = sld_bearing_ball_13 459
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_13 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_13 Shadow
@@ -2966,7 +2765,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_13_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D ES,Primitive 2D ET
+      Location = Primitive 2D EC,Primitive 2D ED
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3000,7 +2799,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_14
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_14 536
+    Location = sld_bearing_ball_14 454
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_14 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_14 Shadow
@@ -3012,7 +2811,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_14_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D EU,Primitive 2D EV
+      Location = Primitive 2D EE,Primitive 2D EF
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3046,7 +2845,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_2
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_2 517
+    Location = sld_bearing_ball_2 471
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_2 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_2 Shadow
@@ -3058,7 +2857,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_2_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D DW,Primitive 2D DX
+      Location = Primitive 2D DG,Primitive 2D DH
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3092,7 +2891,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_3
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_3 529
+    Location = sld_bearing_ball_3 436
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_3 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_3 Shadow
@@ -3104,7 +2903,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_3_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D DY,Primitive 2D DZ
+      Location = Primitive 2D DI,Primitive 2D DJ
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3138,7 +2937,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_4
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_4 532
+    Location = sld_bearing_ball_4 451
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_4 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_4 Shadow
@@ -3150,7 +2949,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_4_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D EA,Primitive 2D EB
+      Location = Primitive 2D DK,Primitive 2D DL
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3184,7 +2983,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_5
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_5 519
+    Location = sld_bearing_ball_5 462
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_5 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_5 Shadow
@@ -3196,7 +2995,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_5_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D EC,Primitive 2D ED
+      Location = Primitive 2D DM,Primitive 2D DN
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3230,7 +3029,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_6
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_6 535
+    Location = sld_bearing_ball_6 437
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_6 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_6 Shadow
@@ -3242,7 +3041,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_6_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D EE,Primitive 2D EF
+      Location = Primitive 2D DO,Primitive 2D DP
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3276,7 +3075,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_7
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_7 526
+    Location = sld_bearing_ball_7 461
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_7 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_7 Shadow
@@ -3288,7 +3087,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_7_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D EG,Primitive 2D EH
+      Location = Primitive 2D DQ,Primitive 2D DR
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3322,7 +3121,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_8
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_8 527
+    Location = sld_bearing_ball_8 469
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_8 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_8 Shadow
@@ -3334,7 +3133,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_8_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D EI,Primitive 2D EJ
+      Location = Primitive 2D DS,Primitive 2D DT
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3368,7 +3167,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_BALL_9
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_ball_9 534
+    Location = sld_bearing_ball_9 457
     BOUNDARY: SSIF_AIR_01_BEARING_BALL_9 Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_ball_9 Shadow
@@ -3380,7 +3179,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_9_BEARING_HOUSING Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D EK,Primitive 2D EL
+      Location = Primitive 2D DU,Primitive 2D DV
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3414,10 +3213,10 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BEARING_HOUSING
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bearing_housing 470
+    Location = sld_bearing_housing 423
     BOUNDARY: SSIF_AIR_01_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = sld_bearing_housing 386 Shadow
+      Location = sld_bearing_housing 409 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3426,14 +3225,14 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_02_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = sld_bearing_housing 381 Shadow
+      Location = sld_bearing_housing 382 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_07_BEARING_HOUSING Side 2
+    BOUNDARY: SSIF_AIR_06_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
       Location = sld_bearing_housing Shadow
       BOUNDARY CONDITIONS:
@@ -3444,7 +3243,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_10_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CY,Primitive 2D CZ
+      Location = Primitive 2D CO,Primitive 2D CP
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3453,7 +3252,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_11_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D DA,Primitive 2D DB
+      Location = Primitive 2D CQ,Primitive 2D CR
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3462,7 +3261,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_12_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D DC,Primitive 2D DD
+      Location = Primitive 2D CS,Primitive 2D CT
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3471,7 +3270,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_13_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D DE,Primitive 2D DF
+      Location = Primitive 2D CU,Primitive 2D CV
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3480,7 +3279,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_14_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D DG,Primitive 2D DH
+      Location = Primitive 2D CW,Primitive 2D CX
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3489,7 +3288,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_1_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CG,Primitive 2D CH
+      Location = Primitive 2D BW,Primitive 2D BX
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3498,7 +3297,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_2_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CI,Primitive 2D CJ
+      Location = Primitive 2D BY,Primitive 2D BZ
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3507,7 +3306,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_3_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CK,Primitive 2D CL
+      Location = Primitive 2D CA,Primitive 2D CB
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3516,7 +3315,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_4_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CM,Primitive 2D CN
+      Location = Primitive 2D CC,Primitive 2D CD
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3525,7 +3324,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_5_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CO,Primitive 2D CP
+      Location = Primitive 2D CE,Primitive 2D CF
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3534,7 +3333,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_6_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CQ,Primitive 2D CR
+      Location = Primitive 2D CG,Primitive 2D CH
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3543,7 +3342,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_7_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CS,Primitive 2D CT
+      Location = Primitive 2D CI,Primitive 2D CJ
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3552,7 +3351,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_8_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CU,Primitive 2D CV
+      Location = Primitive 2D CK,Primitive 2D CL
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3561,7 +3360,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BEARING_BALL_9_BEARING_HOUSING Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CW,Primitive 2D CX
+      Location = Primitive 2D CM,Primitive 2D CN
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3622,7 +3421,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BRACKET_1
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bracket_1 493
+    Location = sld_bracket_1 407
     BOUNDARY: SLD_BRACKET_1 Default
       Boundary Type = WALL
       Location = sld_bracket_1
@@ -3636,7 +3435,16 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BRACKET_1_BRACKET_2 Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D BV,Primitive 2D BW,Primitive 2D BX
+      Location = sld_bracket_1 sld_bracket_2 Shadow
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_BRACKET_1_BRACKET_FLANGE Side 1
+      Boundary Type = INTERFACE
+      Location = Primitive 2D CY,Primitive 2D CZ
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3670,10 +3478,10 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BRACKET_2
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bracket_2 475
+    Location = sld_bracket_2 402
     BOUNDARY: SLD_BRACKET_2 Default
       Boundary Type = WALL
-      Location = Primitive 2D T,Primitive 2D U,Primitive 2D V
+      Location = Primitive 2D K,Primitive 2D L,Primitive 2D M
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Heat Transfer Coefficient = HtcBig
@@ -3684,34 +3492,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_BRACKET_2 Side 2
       Boundary Type = INTERFACE
-      Location = sld_bracket_2 344 Shadow
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_04_BRACKET_2 Side 2
-      Boundary Type = INTERFACE
-      Location = sld_bracket_2 341 Shadow
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_05_BRACKET_2 Side 2
-      Boundary Type = INTERFACE
       Location = sld_bracket_2 342 Shadow
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_06_BRACKET_2 Side 2
-      Boundary Type = INTERFACE
-      Location = sld_bracket_2 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3720,7 +3501,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_BRACKET_1_BRACKET_2 Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D BB,Primitive 2D BC,Primitive 2D BD
+      Location = sld_bracket_1 sld_bracket_2
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3745,27 +3526,111 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_BRACKET_2_NUT_1 Side 1
+    DOMAIN MODELS:
+      DOMAIN MOTION:
+        Option = Stationary
+      END
+      MESH DEFORMATION:
+        Option = None
+      END
+    END
+    SOLID DEFINITION: Solid 1
+      Material = Variabel 1 4307
+      Option = Material Library
+      MORPHOLOGY:
+        Option = Continuous Solid
+      END
+    END
+    SOLID MODELS:
+      HEAT TRANSFER MODEL:
+        Option = Thermal Energy
+      END
+      THERMAL RADIATION MODEL:
+        Option = None
+      END
+    END
+  END
+  DOMAIN: SLD_BRACKET_FLANGE
+    Coord Frame = Coord 0
+    Domain Type = Solid
+    Location = sld_bracket_flange 418
+    BOUNDARY: SLD_BRACKET_FLANGE Default
+      Boundary Type = WALL
+      Location = sld_bracket_flange 359
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Heat Transfer Coefficient = HtcBig
+          Option = Heat Transfer Coefficient
+          Outside Temperature = TAmbient
+        END
+      END
+    END
+    BOUNDARY: SSIF_AIR_03_BRACKET_FLANGE Side 2
       Boundary Type = INTERFACE
-      Location = sld_bracket_2 sld_nut_1 Shadow
+      Location = sld_bracket_flange 357 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_BRACKET_2_NUT_2 Side 1
+    BOUNDARY: SSIF_AIR_04_BRACKET_FLANGE Side 2
       Boundary Type = INTERFACE
-      Location = sld_bracket_2 sld_nut_2 Shadow
+      Location = sld_bracket_flange 358 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_BRACKET_2_NUT_3 Side 1
+    BOUNDARY: SSIF_AIR_05_BRACKET_FLANGE Side 2
       Boundary Type = INTERFACE
-      Location = sld_bracket_2 sld_nut_3 Shadow
+      Location = sld_bracket_flange Shadow
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_BRACKET_1_BRACKET_FLANGE Side 2
+      Boundary Type = INTERFACE
+      Location = Primitive 2D BM,Primitive 2D BN
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_BRACKET_FLANGE_INSULATION_GLIMMER_BOTTOM Side 1
+      Boundary Type = INTERFACE
+      Location = sld_bracket_flange sld_insulation_glimmer_bottom Shadow
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_BRACKET_FLANGE_NUT_1 Side 1
+      Boundary Type = INTERFACE
+      Location = sld_bracket_flange sld_nut_1 Shadow
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_BRACKET_FLANGE_NUT_2 Side 1
+      Boundary Type = INTERFACE
+      Location = sld_bracket_flange sld_nut_2 Shadow
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_BRACKET_FLANGE_NUT_3 Side 1
+      Boundary Type = INTERFACE
+      Location = sld_bracket_flange sld_nut_3 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3799,7 +3664,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BUSHING_1
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bushing_1 516
+    Location = sld_bushing_1 435
     BOUNDARY: FSIF_GAS_BUSHING_1 Side 2
       Boundary Type = INTERFACE
       Location = sld_bushing_1 Shadow
@@ -3881,7 +3746,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_BUSHING_2
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_bushing_2 500
+    Location = sld_bushing_2 452
     BOUNDARY: FSIF_GAS_BUSHING_2 Side 2
       Boundary Type = INTERFACE
       Location = sld_bushing_2 Shadow
@@ -3891,9 +3756,9 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_AIR_09_BUSHING_2 Side 2
+    BOUNDARY: SSIF_AIR_08_BUSHING_2 Side 2
       Boundary Type = INTERFACE
-      Location = sld_bushing_2 363 Shadow
+      Location = sld_bushing_2 360 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -3963,10 +3828,10 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_CAP
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_cap 518
+    Location = sld_cap 449
     BOUNDARY: SLD_CAP Default
       Boundary Type = WALL
-      Location = sld_cap 364
+      Location = sld_cap 361
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Heat Transfer Coefficient = HtcBig
@@ -3975,7 +3840,7 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_AIR_09_CAP Side 2
+    BOUNDARY: SSIF_AIR_08_CAP Side 2
       Boundary Type = INTERFACE
       Location = sld_cap Shadow
       BOUNDARY CONDITIONS:
@@ -4029,7 +3894,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_CAP_BUSHING
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_cap_bushing 482
+    Location = sld_cap_bushing 403
     BOUNDARY: SSIF_AIR_00_CAP_BUSHING Side 2
       Boundary Type = INTERFACE
       Location = Primitive 2D AI,Primitive 2D AJ
@@ -4059,8 +3924,16 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_CAP_BUSHING_SHAFT Side 1
       Boundary Type = INTERFACE
-      Location = if_contact_shaft_cap_bushing Shadow,sld_cap_bushing \
-        sld_shaft Shadow
+      Location = if_contact_shaft_cap_bushing Shadow
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_CAP_BUSHING_SHAFT_GAP Side 2
+      Boundary Type = INTERFACE
+      Location = sld_cap_bushing sld_shaft Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4100,20 +3973,57 @@ FLOW: Flow Analysis 1
       END
     END
   END
-  DOMAIN: SLD_DC_MOTOR
+  DOMAIN: SLD_DC_MOTOR_1
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_dc_motor 492
-    BOUNDARY: SSIF_AIR_03_DC_MOTOR Side 2
+    Location = sld_dc_motor_1
+    BOUNDARY: SSIF_DC_MOTOR_1_DC_MOTOR_2 Side 1
       Boundary Type = INTERFACE
-      Location = sld_dc_motor 365 Shadow
+      Location = sld_dc_motor 362
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_SENSOR_COVER_2_DC_MOTOR Side 2
+    BOUNDARY: SSIF_DC_MOTOR_1_HOUSING_ACTUATOR Side 1
+      Boundary Type = INTERFACE
+      Location = sld_housing_actuator 375
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    DOMAIN MODELS:
+      DOMAIN MOTION:
+        Option = Stationary
+      END
+      MESH DEFORMATION:
+        Option = None
+      END
+    END
+    SOLID DEFINITION: Solid 1
+      Material = Air Solid Ideal Gas BW 2015
+      Option = Material Library
+      MORPHOLOGY:
+        Option = Continuous Solid
+      END
+    END
+    SOLID MODELS:
+      HEAT TRANSFER MODEL:
+        Option = Thermal Energy
+      END
+      THERMAL RADIATION MODEL:
+        Option = None
+      END
+    END
+  END
+  DOMAIN: SLD_DC_MOTOR_2
+    Coord Frame = Coord 0
+    Domain Type = Solid
+    Location = sld_dc_motor_2
+    BOUNDARY: SSIF_AIR_SENSOR_COVER_2_DC_MOTOR_2 Side 2
       Boundary Type = INTERFACE
       Location = sld_dc_motor Shadow
       BOUNDARY CONDITIONS:
@@ -4122,40 +4032,67 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_DC_MOTOR_HOUSING_ACTUATOR Side 1
+    BOUNDARY: SSIF_DC_MOTOR_1_DC_MOTOR_2 Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D DI,Primitive 2D DJ,Primitive 2D DK,Primitive 2D \
-        DL,Primitive 2D DQ,Primitive 2D DR,Primitive 2D DS,Primitive 2D DT
+      Location = sld_dc_motor 362 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_DC_MOTOR_HOUSING_ACTUATOR_GAP_0P265 Side 1
+    BOUNDARY: SSIF_DC_MOTOR_2_DC_MOTOR_3 Side 1
       Boundary Type = INTERFACE
-      Location = if_dc_motor_housing_actuator_gap_0p265 Shadow
+      Location = sld_dc_motor 363 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_DC_MOTOR_HOUSING_ACTUATOR_GAP_0P5 Side 1
+    BOUNDARY: SSIF_DC_MOTOR_2_HOUSING_ACTUATOR Side 1
       Boundary Type = INTERFACE
-      Location = sld_dc_motor sld_housing_actuator 720 Shadow
+      Location = sld_dc_motor sld_housing_actuator Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: WL_DC_MOTOR_SOURCE
-      Boundary Type = WALL
-      Location = sld_dc_motor 366
+    DOMAIN MODELS:
+      DOMAIN MOTION:
+        Option = Stationary
+      END
+      MESH DEFORMATION:
+        Option = None
+      END
+    END
+    SOLID DEFINITION: Solid 1
+      Material = Air Solid Ideal Gas BW 2015
+      Option = Material Library
+      MORPHOLOGY:
+        Option = Continuous Solid
+      END
+    END
+    SOLID MODELS:
+      HEAT TRANSFER MODEL:
+        Option = Thermal Energy
+      END
+      THERMAL RADIATION MODEL:
+        Option = None
+      END
+    END
+  END
+  DOMAIN: SLD_DC_MOTOR_3
+    Coord Frame = Coord 0
+    Domain Type = Solid
+    Location = sld_dc_motor_3
+    BOUNDARY: SSIF_DC_MOTOR_2_DC_MOTOR_3 Side 2
+      Boundary Type = INTERFACE
+      Location = sld_dc_motor 363
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
-          Option = Adiabatic
+          Option = Conservative Interface Flux
         END
       END
       BOUNDARY SOURCE:
@@ -4176,7 +4113,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Steel for DC
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -4191,31 +4128,31 @@ FLOW: Flow Analysis 1
       END
     END
   END
-  DOMAIN: SLD_GAS
+  DOMAIN: SLD_GAS_1
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_gas 471
-    BOUNDARY: FSIF_GAS_GAS Side 2
+    Location = sld_gas_1 422
+    BOUNDARY: FSIF_GAS_GAS_1 Side 2
       Boundary Type = INTERFACE
-      Location = sld_gas Shadow
+      Location = sld_gas_1 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_GAS_SHAFT Side 1
+    BOUNDARY: SSIF_GAS_1_SHAFT Side 1
       Boundary Type = INTERFACE
-      Location = sld_gas sld_shaft Shadow
+      Location = sld_gas_1 sld_shaft Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_GAS_VALVE_PLATE Side 1
+    BOUNDARY: SSIF_GAS_1_VALVE_PLATE Side 1
       Boundary Type = INTERFACE
-      Location = sld_gas sld_valve_plate Shadow
+      Location = sld_gas_1 sld_valve_plate Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4231,7 +4168,7 @@ FLOW: Flow Analysis 1
       END
     END
     SOLID DEFINITION: Solid 1
-      Material = Air Solid Ideal Gas MH
+      Material = Air Solid Ideal Gas BW 2015
       Option = Material Library
       MORPHOLOGY:
         Option = Continuous Solid
@@ -4249,10 +4186,10 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_HOUSING_ACTUATOR
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_housing_actuator 469
+    Location = sld_housing_actuator 406
     BOUNDARY: SSIF_AIR_00_HOUSING_ACTUATOR Side 2
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 376 Shadow
+      Location = sld_housing_actuator 377 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4261,7 +4198,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_02_HOUSING_ACTUATOR Side 2
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 375 Shadow
+      Location = sld_housing_actuator 376 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4270,7 +4207,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_03_HOUSING_ACTUATOR Side 2
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 374 Shadow
+      Location = sld_housing_actuator 379 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4288,7 +4225,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_05_HOUSING_ACTUATOR Side 2
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 377 Shadow
+      Location = sld_housing_actuator 380 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4297,7 +4234,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_06_HOUSING_ACTUATOR Side 2
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator 379 Shadow
+      Location = sld_housing_actuator 381 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4305,15 +4242,6 @@ FLOW: Flow Analysis 1
       END
     END
     BOUNDARY: SSIF_AIR_07_HOUSING_ACTUATOR Side 2
-      Boundary Type = INTERFACE
-      Location = sld_housing_actuator 380 Shadow
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_08_HOUSING_ACTUATOR Side 2
       Boundary Type = INTERFACE
       Location = sld_housing_actuator Shadow
       BOUNDARY CONDITIONS:
@@ -4324,7 +4252,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_2_HOUSING_ACTUATOR Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D BM,Primitive 2D BN,Primitive 2D BO
+      Location = Primitive 2D BJ,Primitive 2D BK,Primitive 2D BL
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4340,28 +4268,18 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_DC_MOTOR_HOUSING_ACTUATOR Side 2
+    BOUNDARY: SSIF_DC_MOTOR_1_HOUSING_ACTUATOR Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D BR,Primitive 2D BS,Primitive 2D BT,Primitive 2D \
-        BU,Primitive 2D CC,Primitive 2D CD,Primitive 2D CE,Primitive 2D CF
+      Location = sld_housing_actuator 375 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_DC_MOTOR_HOUSING_ACTUATOR_GAP_0P265 Side 2
+    BOUNDARY: SSIF_DC_MOTOR_2_HOUSING_ACTUATOR Side 2
       Boundary Type = INTERFACE
-      Location = if_dc_motor_housing_actuator_gap_0p265
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_DC_MOTOR_HOUSING_ACTUATOR_GAP_0P5 Side 2
-      Boundary Type = INTERFACE
-      Location = sld_dc_motor sld_housing_actuator 720
+      Location = sld_dc_motor sld_housing_actuator
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4406,7 +4324,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_HOUSING_ACTUATOR_SCREW_1 Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator sld_screw_1 Shadow
+      Location = sld_housing_actuator sld_screw_4 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4415,7 +4333,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_HOUSING_ACTUATOR_SCREW_2 Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator sld_screw_2 Shadow
+      Location = sld_housing_actuator sld_screw_6 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4424,7 +4342,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_HOUSING_ACTUATOR_SCREW_3 Side 1
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator sld_screw_3 Shadow
+      Location = sld_housing_actuator sld_screw_7 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4442,7 +4360,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_HOUSING_ACTUATOR_SENSOR_COVER Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D DO,Primitive 2D DP
+      Location = Primitive 2D DC,Primitive 2D DD
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4462,7 +4380,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: WL_HOUSING_ACTUATOR_HTC7
       Boundary Type = WALL
-      Location = sld_housing_actuator 372
+      Location = sld_housing_actuator 373
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Heat Transfer Coefficient = HtcSmall
@@ -4498,12 +4416,12 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_HOUSING_TUBE_MACHINED
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_housing_tube_machined 498
+    Location = sld_housing_tube_machined 416
     BOUNDARY: FSIF_GAS_HOUSING_TUBE_MACHINED Side 2
       Boundary Type = INTERFACE
-      Location = sld_housing_tube_machined 324 \
-        Shadow,sld_housing_tube_machined 326 Shadow,sld_housing_tube_machined \
-        328 Shadow
+      Location = sld_housing_tube_machined 325 \
+        Shadow,sld_housing_tube_machined 328 Shadow,sld_housing_tube_machined \
+        329 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4512,8 +4430,8 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SLD_HOUSING_TUBE_MACHINED Default
       Boundary Type = WALL
-      Location = sld_housing_tube_machined 321,sld_housing_tube_machined \
-        322,sld_housing_tube_machined 323
+      Location = sld_housing_tube_machined 322,sld_housing_tube_machined \
+        323,sld_housing_tube_machined 324
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Heat Transfer Coefficient = HtcBig
@@ -4524,7 +4442,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_HOUSING_TUBE_MACHINED Side 2
       Boundary Type = INTERFACE
-      Location = sld_housing_tube_machined 325 \
+      Location = sld_housing_tube_machined 326 \
         Shadow,sld_housing_tube_machined 327 Shadow,sld_housing_tube_machined \
         Shadow
       BOUNDARY CONDITIONS:
@@ -4605,10 +4523,10 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_INSULATION_GLIMMER_BOTTOM
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_insulation_glimmer_bottom 468
+    Location = sld_insulation_glimmer_bottom 404
     BOUNDARY: SLD_INSULATION_GLIMMER_BOTTOM Default
       Boundary Type = WALL
-      Location = sld_insulation_glimmer_bottom 334
+      Location = Primitive 2D BQ,Primitive 2D BR
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Heat Transfer Coefficient = HtcBig
@@ -4619,7 +4537,16 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_INSULATION_GLIMMER_BOTTOM Side 2
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_bottom 333 Shadow
+      Location = sld_insulation_glimmer_bottom Shadow
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_AIR_03_INSULATION_GLIMMER_BOTTOM Side 2
+      Boundary Type = INTERFACE
+      Location = sld_insulation_glimmer_bottom 335 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4628,7 +4555,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_04_INSULATION_GLIMMER_BOTTOM Side 2
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_bottom 329 Shadow
+      Location = sld_insulation_glimmer_bottom 332 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4637,16 +4564,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_05_INSULATION_GLIMMER_BOTTOM Side 2
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_bottom Shadow
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_06_INSULATION_GLIMMER_BOTTOM Side 2
-      Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_bottom 331 Shadow
+      Location = sld_insulation_glimmer_bottom 334 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4656,6 +4574,15 @@ FLOW: Flow Analysis 1
     BOUNDARY: SSIF_BRACKET_2_INSULATION_GLIMMER_BOTTOM Side 2
       Boundary Type = INTERFACE
       Location = sld_bracket_2 sld_insulation_glimmer_bottom
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_BRACKET_FLANGE_INSULATION_GLIMMER_BOTTOM Side 2
+      Boundary Type = INTERFACE
+      Location = sld_bracket_flange sld_insulation_glimmer_bottom
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4707,7 +4634,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_INSULATION_GLIMMER_TOP
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_insulation_glimmer_top 474
+    Location = sld_insulation_glimmer_top 397
     BOUNDARY: SLD_INSULATION_GLIMMER_TOP Default
       Boundary Type = WALL
       Location = sld_insulation_glimmer_top
@@ -4719,9 +4646,18 @@ FLOW: Flow Analysis 1
         END
       END
     END
+    BOUNDARY: SSIF_AIR_03_INSULATION_GLIMMER_TOP Side 2
+      Boundary Type = INTERFACE
+      Location = sld_insulation_glimmer_top 338 Shadow
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
     BOUNDARY: SSIF_AIR_04_INSULATION_GLIMMER_TOP Side 2
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_top 337 Shadow
+      Location = sld_insulation_glimmer_top 336 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4730,16 +4666,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_05_INSULATION_GLIMMER_TOP Side 2
       Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_top 335 Shadow
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_06_INSULATION_GLIMMER_TOP Side 2
-      Boundary Type = INTERFACE
-      Location = sld_insulation_glimmer_top 336 Shadow
+      Location = sld_insulation_glimmer_top 337 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4791,7 +4718,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_INSULATION_STEEL
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_insulation_steel 467
+    Location = sld_insulation_steel 393
     BOUNDARY: SLD_INSULATION_STEEL Default
       Boundary Type = WALL
       Location = sld_insulation_steel
@@ -4803,9 +4730,18 @@ FLOW: Flow Analysis 1
         END
       END
     END
+    BOUNDARY: SSIF_AIR_03_INSULATION_STEEL Side 2
+      Boundary Type = INTERFACE
+      Location = sld_insulation_steel 341 Shadow
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
     BOUNDARY: SSIF_AIR_04_INSULATION_STEEL Side 2
       Boundary Type = INTERFACE
-      Location = sld_insulation_steel 340 Shadow
+      Location = sld_insulation_steel 339 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4814,16 +4750,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_05_INSULATION_STEEL Side 2
       Boundary Type = INTERFACE
-      Location = sld_insulation_steel 338 Shadow
-      BOUNDARY CONDITIONS:
-        HEAT TRANSFER:
-          Option = Conservative Interface Flux
-        END
-      END
-    END
-    BOUNDARY: SSIF_AIR_06_INSULATION_STEEL Side 2
-      Boundary Type = INTERFACE
-      Location = sld_insulation_steel 339 Shadow
+      Location = sld_insulation_steel 340 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4884,7 +4811,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_LEVER_1
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_lever_1 494
+    Location = sld_lever_1 432
     BOUNDARY: SSIF_AIR_00_LEVER_1 Side 2
       Boundary Type = INTERFACE
       Location = sld_lever_1 Shadow
@@ -4914,8 +4841,8 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_LEVER_1_WASHER Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D BE,Primitive 2D BF,Primitive 2D BG,Primitive 2D \
-        BH,Primitive 2D BI,Primitive 2D BJ,Primitive 2D BK,Primitive 2D BL
+      Location = Primitive 2D BB,Primitive 2D BC,Primitive 2D BD,Primitive 2D \
+        BE,Primitive 2D BF,Primitive 2D BG,Primitive 2D BH,Primitive 2D BI
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -4949,7 +4876,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_LEVER_2
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_lever_2 487
+    Location = sld_lever_2 426
     BOUNDARY: SSIF_AIR_00_LEVER_2 Side 2
       Boundary Type = INTERFACE
       Location = Primitive 2D W,Primitive 2D X,Primitive 2D Y
@@ -5013,7 +4940,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_NUT_1
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_nut_1 521
+    Location = sld_nut_1 447
     BOUNDARY: SLD_NUT_1 Default
       Boundary Type = WALL
       Location = sld_nut_1
@@ -5025,18 +4952,18 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_AIR_05_NUT_1 Side 2
+    BOUNDARY: SSIF_AIR_04_NUT_1 Side 2
       Boundary Type = INTERFACE
-      Location = sld_nut_1 345 Shadow
+      Location = sld_nut_1 370 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_BRACKET_2_NUT_1 Side 2
+    BOUNDARY: SSIF_BRACKET_FLANGE_NUT_1 Side 2
       Boundary Type = INTERFACE
-      Location = sld_bracket_2 sld_nut_1
+      Location = sld_bracket_flange sld_nut_1
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5045,7 +4972,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_NUT_1_SCREW_2 Side 1
       Boundary Type = INTERFACE
-      Location = sld_nut_1 sld_screw_2 Shadow
+      Location = sld_nut_1 sld_screw_6 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5079,7 +5006,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_NUT_2
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_nut_2 522
+    Location = sld_nut_2 425
     BOUNDARY: SLD_NUT_2 Default
       Boundary Type = WALL
       Location = sld_nut_2
@@ -5091,18 +5018,18 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_AIR_04_NUT_2 Side 2
+    BOUNDARY: SSIF_AIR_03_NUT_2 Side 2
       Boundary Type = INTERFACE
-      Location = sld_nut_2 346 Shadow
+      Location = sld_nut_2 371 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_BRACKET_2_NUT_2 Side 2
+    BOUNDARY: SSIF_BRACKET_FLANGE_NUT_2 Side 2
       Boundary Type = INTERFACE
-      Location = sld_bracket_2 sld_nut_2
+      Location = sld_bracket_flange sld_nut_2
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5111,7 +5038,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_NUT_2_SCREW_1 Side 1
       Boundary Type = INTERFACE
-      Location = sld_nut_2 sld_screw_1 Shadow
+      Location = sld_nut_2 sld_screw_4 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5145,7 +5072,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_NUT_3
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_nut_3 523
+    Location = sld_nut_3 453
     BOUNDARY: SLD_NUT_3 Default
       Boundary Type = WALL
       Location = sld_nut_3
@@ -5157,18 +5084,18 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_AIR_06_NUT_3 Side 2
+    BOUNDARY: SSIF_AIR_05_NUT_3 Side 2
       Boundary Type = INTERFACE
-      Location = sld_nut_3 347 Shadow
+      Location = sld_nut_3 372 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_BRACKET_2_NUT_3 Side 2
+    BOUNDARY: SSIF_BRACKET_FLANGE_NUT_3 Side 2
       Boundary Type = INTERFACE
-      Location = sld_bracket_2 sld_nut_3
+      Location = sld_bracket_flange sld_nut_3
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5177,7 +5104,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_NUT_3_SCREW_3 Side 1
       Boundary Type = INTERFACE
-      Location = sld_nut_3 sld_screw_3 Shadow
+      Location = sld_nut_3 sld_screw_7 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5211,7 +5138,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_PIN_GAS_1
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_pin_gas_1 533
+    Location = sld_pin_gas_1 472
     BOUNDARY: FSIF_GAS_PIN_GAS_1 Side 2
       Boundary Type = INTERFACE
       Location = sld_pin_gas_1 Shadow
@@ -5223,7 +5150,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SLD_PIN_GAS_1 Default
       Boundary Type = WALL
-      Location = sld_pin_gas_1 348
+      Location = sld_pin_gas_1 343
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Heat Transfer Coefficient = HtcBig
@@ -5268,7 +5195,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_PIN_GAS_2
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_pin_gas_2 515
+    Location = sld_pin_gas_2 470
     BOUNDARY: FSIF_GAS_PIN_GAS_2 Side 2
       Boundary Type = INTERFACE
       Location = sld_pin_gas_2 Shadow
@@ -5280,7 +5207,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_PIN_GAS_2 Side 2
       Boundary Type = INTERFACE
-      Location = sld_pin_gas_2 349 Shadow
+      Location = sld_pin_gas_2 344 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5332,8 +5259,8 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_RETAINER
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_retainer 495
-    BOUNDARY: SSIF_AIR_07_RETAINER Side 2
+    Location = sld_retainer 424
+    BOUNDARY: SSIF_AIR_06_RETAINER Side 2
       Boundary Type = INTERFACE
       Location = sld_retainer Shadow
       BOUNDARY CONDITIONS:
@@ -5387,7 +5314,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_RETAINER_BUSHING_1
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_retainer_bushing_1 478
+    Location = sld_retainer_bushing_1 433
     BOUNDARY: FSIF_GAS_RETAINER_BUSHING_1 Side 2
       Boundary Type = INTERFACE
       Location = sld_retainer_bushing_1 Shadow
@@ -5399,7 +5326,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_RETAINER_BUSHING_1 Side 2
       Boundary Type = INTERFACE
-      Location = sld_retainer_bushing_1 350 Shadow
+      Location = sld_retainer_bushing_1 345 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5460,10 +5387,10 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_RETAINER_BUSHING_2
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_retainer_bushing_2 510
+    Location = sld_retainer_bushing_2 438
     BOUNDARY: FSIF_GAS_RETAINER_BUSHING_2 Side 2
       Boundary Type = INTERFACE
-      Location = sld_retainer_bushing_2 351 Shadow
+      Location = sld_retainer_bushing_2 346 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5535,7 +5462,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_RETAINER_SPRING
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_retainer_spring 472
+    Location = sld_retainer_spring 421
     BOUNDARY: SSIF_AIR_00_RETAINER_SPRING Side 2
       Boundary Type = INTERFACE
       Location = sld_retainer_spring Shadow
@@ -5556,7 +5483,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_RETAINER_SPRING_SHAFT_OUTPUT Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D DM,Primitive 2D DN
+      Location = Primitive 2D DA,Primitive 2D DB
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5590,7 +5517,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_ROLLED_BUSHING_PTFE
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_rolled_bushing_ptfe 506
+    Location = sld_rolled_bushing_ptfe 431
     BOUNDARY: SSIF_AIR_02_ROLLED_BUSHING_PTFE Side 2
       Boundary Type = INTERFACE
       Location = sld_rolled_bushing_ptfe Shadow
@@ -5602,7 +5529,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_2_ROLLED_BUSHING_PTFE Side 2
       Boundary Type = INTERFACE
-      Location = sld_rolled_bushing_ptfe 352 Shadow
+      Location = sld_rolled_bushing_ptfe 347 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5654,7 +5581,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_ROLLED_BUSHING_STEEL
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_rolled_bushing_steel 486
+    Location = sld_rolled_bushing_steel 420
     BOUNDARY: SSIF_AIR_02_ROLLED_BUSHING_STEEL Side 2
       Boundary Type = INTERFACE
       Location = sld_rolled_bushing_steel Shadow
@@ -5666,7 +5593,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_2_ROLLED_BUSHING_STEEL Side 2
       Boundary Type = INTERFACE
-      Location = sld_rolled_bushing_steel 353 Shadow
+      Location = sld_rolled_bushing_steel 369 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5718,21 +5645,21 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_SCREW_1
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_screw_1 514
+    Location = sld_screw_1
     BOUNDARY: SLD_SCREW_1 Default
       Boundary Type = WALL
       Location = Primitive 2D E,Primitive 2D F
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
-          Heat Transfer Coefficient = HtcBig
+          Heat Transfer Coefficient = HtcSmall
           Option = Heat Transfer Coefficient
           Outside Temperature = TAmbient
         END
       END
     END
-    BOUNDARY: SSIF_AIR_04_SCREW_1 Side 2
+    BOUNDARY: SSIF_AIR_03_SCREW_1 Side 2
       Boundary Type = INTERFACE
-      Location = sld_screw_1 354 Shadow
+      Location = sld_screw_4 348 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5741,7 +5668,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_HOUSING_ACTUATOR_SCREW_1 Side 2
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator sld_screw_1
+      Location = sld_housing_actuator sld_screw_4
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5750,7 +5677,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_NUT_2_SCREW_1 Side 2
       Boundary Type = INTERFACE
-      Location = sld_nut_2 sld_screw_1
+      Location = sld_nut_2 sld_screw_4
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5784,21 +5711,21 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_SCREW_2
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_screw_2 507
+    Location = sld_screw_2
     BOUNDARY: SLD_SCREW_2 Default
       Boundary Type = WALL
       Location = Primitive 2D G,Primitive 2D H
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
-          Heat Transfer Coefficient = HtcBig
+          Heat Transfer Coefficient = HtcSmall
           Option = Heat Transfer Coefficient
           Outside Temperature = TAmbient
         END
       END
     END
-    BOUNDARY: SSIF_AIR_05_SCREW_2 Side 2
+    BOUNDARY: SSIF_AIR_04_SCREW_2 Side 2
       Boundary Type = INTERFACE
-      Location = sld_screw_2 355 Shadow
+      Location = sld_screw_6 349 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5807,7 +5734,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_HOUSING_ACTUATOR_SCREW_2 Side 2
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator sld_screw_2
+      Location = sld_housing_actuator sld_screw_6
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5816,7 +5743,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_NUT_1_SCREW_2 Side 2
       Boundary Type = INTERFACE
-      Location = sld_nut_1 sld_screw_2
+      Location = sld_nut_1 sld_screw_6
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5850,7 +5777,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_SCREW_3
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_screw_3 497
+    Location = sld_screw_3
     BOUNDARY: SLD_SCREW_3 Default
       Boundary Type = WALL
       Location = Primitive 2D I,Primitive 2D J
@@ -5862,9 +5789,9 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_AIR_06_SCREW_3 Side 2
+    BOUNDARY: SSIF_AIR_05_SCREW_3 Side 2
       Boundary Type = INTERFACE
-      Location = sld_screw_3 356 Shadow
+      Location = sld_screw_7 350 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5873,7 +5800,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_HOUSING_ACTUATOR_SCREW_3 Side 2
       Boundary Type = INTERFACE
-      Location = sld_housing_actuator sld_screw_3
+      Location = sld_housing_actuator sld_screw_7
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5882,7 +5809,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_NUT_3_SCREW_3 Side 2
       Boundary Type = INTERFACE
-      Location = sld_nut_3 sld_screw_3
+      Location = sld_nut_3 sld_screw_7
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -5916,7 +5843,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_SEALING_FKM
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_sealing_fkm 484
+    Location = sld_sealing_fkm 405
     BOUNDARY: SSIF_AIR_00_SEALING_FKM Side 2
       Boundary Type = INTERFACE
       Location = Primitive 2D AZ,Primitive 2D BA
@@ -5926,7 +5853,7 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_AIR_07_SEALING_FKM Side 2
+    BOUNDARY: SSIF_AIR_06_SEALING_FKM Side 2
       Boundary Type = INTERFACE
       Location = sld_sealing_fkm Shadow
       BOUNDARY CONDITIONS:
@@ -5989,7 +5916,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_SEALING_STEEL
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_sealing_steel 499
+    Location = sld_sealing_steel 419
     BOUNDARY: SSIF_AIR_00_SEALING_STEEL Side 2
       Boundary Type = INTERFACE
       Location = sld_sealing_steel Shadow
@@ -6035,10 +5962,10 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_SENSOR_COVER
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_sensor_cover 476
-    BOUNDARY: SSIF_AIR_08_SENSOR_COVER Side 2
+    Location = sld_sensor_cover 396
+    BOUNDARY: SSIF_AIR_07_SENSOR_COVER Side 2
       Boundary Type = INTERFACE
-      Location = sld_sensor_cover 362 Shadow
+      Location = sld_sensor_cover 356 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6047,7 +5974,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_1_SENSOR_COVER Side 2
       Boundary Type = INTERFACE
-      Location = sld_sensor_cover 359 Shadow
+      Location = sld_sensor_cover 353 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6056,7 +5983,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_2_SENSOR_COVER Side 2
       Boundary Type = INTERFACE
-      Location = sld_sensor_cover 358 Shadow
+      Location = sld_sensor_cover 352 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6074,7 +6001,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_4_SENSOR_COVER Side 2
       Boundary Type = INTERFACE
-      Location = sld_sensor_cover 360 Shadow
+      Location = sld_sensor_cover 354 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6083,7 +6010,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_HOUSING_ACTUATOR_SENSOR_COVER Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D CA,Primitive 2D CB
+      Location = Primitive 2D BU,Primitive 2D BV
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6103,7 +6030,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: WL_SENSOR_COVER_HTC7
       Boundary Type = WALL
-      Location = sld_sensor_cover 361
+      Location = sld_sensor_cover 355
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Heat Transfer Coefficient = HtcSmall
@@ -6139,7 +6066,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_SHAFT
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_shaft 489
+    Location = sld_shaft 414
     BOUNDARY: FSIF_GAS_SHAFT Side 2
       Boundary Type = INTERFACE
       Location = Primitive 2D AF,Primitive 2D AG,Primitive 2D AH
@@ -6151,16 +6078,16 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_00_SHAFT Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D P,Primitive 2D Q
+      Location = Primitive 2D S,Primitive 2D T
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_09_SHAFT Side 2
+    BOUNDARY: SSIF_AIR_08_SHAFT Side 2
       Boundary Type = INTERFACE
-      Location = sld_shaft 368 Shadow
+      Location = sld_shaft 365 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6205,16 +6132,25 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_CAP_BUSHING_SHAFT Side 2
       Boundary Type = INTERFACE
-      Location = if_contact_shaft_cap_bushing,sld_cap_bushing sld_shaft
+      Location = if_contact_shaft_cap_bushing
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_GAS_SHAFT Side 2
+    BOUNDARY: SSIF_CAP_BUSHING_SHAFT_GAP Side 1
       Boundary Type = INTERFACE
-      Location = sld_gas sld_shaft
+      Location = sld_cap_bushing sld_shaft
+      BOUNDARY CONDITIONS:
+        HEAT TRANSFER:
+          Option = Conservative Interface Flux
+        END
+      END
+    END
+    BOUNDARY: SSIF_GAS_1_SHAFT Side 2
+      Boundary Type = INTERFACE
+      Location = sld_gas_1 sld_shaft
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6232,7 +6168,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_SHAFT_VALVE_PLATE Side 1
       Boundary Type = INTERFACE
-      Location = Primitive 2D BP,Primitive 2D BQ
+      Location = Primitive 2D BO,Primitive 2D BP
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6241,7 +6177,8 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_SHAFT_WASHER_SCRAPER Side 1
       Boundary Type = INTERFACE
-      Location = sld_shaft sld_washer_scraper Shadow
+      Location = if_contact_shaft_washer_scraper Shadow,sld_shaft \
+        sld_washer_scraper Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6250,8 +6187,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_SHAFT_WASHER_SCRAPER_GAP Side 1
       Boundary Type = INTERFACE
-      Location = if_contact_shaft_washer_scraper Shadow,sld_shaft \
-        sld_washer_scraper 721 Shadow
+      Location = sld_shaft sld_washer_scraper 730 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6285,7 +6221,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_SHAFT_OUTPUT
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_shaft_output 473
+    Location = sld_shaft_output 394
     BOUNDARY: SSIF_AIR_00_SHAFT_OUTPUT Side 2
       Boundary Type = INTERFACE
       Location = Primitive 2D AS,Primitive 2D AT
@@ -6297,16 +6233,16 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_02_SHAFT_OUTPUT Side 2
       Boundary Type = INTERFACE
-      Location = sld_shaft_output 369 Shadow
+      Location = sld_shaft_output 367 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
         END
       END
     END
-    BOUNDARY: SSIF_AIR_07_SHAFT_OUTPUT Side 2
+    BOUNDARY: SSIF_AIR_06_SHAFT_OUTPUT Side 2
       Boundary Type = INTERFACE
-      Location = sld_shaft_output 371 Shadow
+      Location = sld_shaft_output 368 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6315,7 +6251,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_AIR_SENSOR_COVER_2_SHAFT_OUTPUT Side 2
       Boundary Type = INTERFACE
-      Location = sld_shaft_output 370 Shadow
+      Location = sld_shaft_output 366 Shadow
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6351,7 +6287,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_RETAINER_SPRING_SHAFT_OUTPUT Side 2
       Boundary Type = INTERFACE
-      Location = Primitive 2D BY,Primitive 2D BZ
+      Location = Primitive 2D BS,Primitive 2D BT
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6403,7 +6339,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_SPRING
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_spring 488
+    Location = sld_spring 429
     BOUNDARY: SSIF_AIR_00_SPRING Side 2
       Boundary Type = INTERFACE
       Location = sld_spring Shadow
@@ -6440,7 +6376,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_VALVE_PLATE
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_valve_plate 504
+    Location = sld_valve_plate 412
     BOUNDARY: FSIF_GAS_VALVE_PLATE Side 2
       Boundary Type = INTERFACE
       Location = sld_valve_plate Shadow
@@ -6450,9 +6386,9 @@ FLOW: Flow Analysis 1
         END
       END
     END
-    BOUNDARY: SSIF_GAS_VALVE_PLATE Side 2
+    BOUNDARY: SSIF_GAS_1_VALVE_PLATE Side 2
       Boundary Type = INTERFACE
-      Location = sld_gas sld_valve_plate
+      Location = sld_gas_1 sld_valve_plate
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6504,7 +6440,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_WASHER
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_washer 485
+    Location = sld_washer 413
     BOUNDARY: SSIF_AIR_00_WASHER Side 2
       Boundary Type = INTERFACE
       Location = sld_washer Shadow
@@ -6560,7 +6496,7 @@ FLOW: Flow Analysis 1
   DOMAIN: SLD_WASHER_SCRAPER
     Coord Frame = Coord 0
     Domain Type = Solid
-    Location = sld_washer_scraper 501
+    Location = sld_washer_scraper 410
     BOUNDARY: FSIF_GAS_WASHER_SCRAPER Side 2
       Boundary Type = INTERFACE
       Location = sld_washer_scraper Shadow
@@ -6581,7 +6517,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_SHAFT_WASHER_SCRAPER Side 2
       Boundary Type = INTERFACE
-      Location = sld_shaft sld_washer_scraper
+      Location = if_contact_shaft_washer_scraper,sld_shaft sld_washer_scraper
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6590,8 +6526,7 @@ FLOW: Flow Analysis 1
     END
     BOUNDARY: SSIF_SHAFT_WASHER_SCRAPER_GAP Side 2
       Boundary Type = INTERFACE
-      Location = if_contact_shaft_washer_scraper,sld_shaft sld_washer_scraper \
-        721
+      Location = sld_shaft sld_washer_scraper 730
       BOUNDARY CONDITIONS:
         HEAT TRANSFER:
           Option = Conservative Interface Flux
@@ -6702,9 +6637,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: FSIF_GAS_GAS
-    Boundary List1 = FSIF_GAS_GAS Side 1
-    Boundary List2 = FSIF_GAS_GAS Side 2
+  DOMAIN INTERFACE: FSIF_GAS_GAS_1
+    Boundary List1 = FSIF_GAS_GAS_1 Side 1
+    Boundary List2 = FSIF_GAS_GAS_1 Side 2
     Interface Type = Fluid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7467,9 +7402,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_03_DC_MOTOR
-    Boundary List1 = SSIF_AIR_03_DC_MOTOR Side 1
-    Boundary List2 = SSIF_AIR_03_DC_MOTOR Side 2
+  DOMAIN INTERFACE: SSIF_AIR_03_BRACKET_FLANGE
+    Boundary List1 = SSIF_AIR_03_BRACKET_FLANGE Side 1
+    Boundary List2 = SSIF_AIR_03_BRACKET_FLANGE Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7501,9 +7436,94 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_04_BRACKET_2
-    Boundary List1 = SSIF_AIR_04_BRACKET_2 Side 1
-    Boundary List2 = SSIF_AIR_04_BRACKET_2 Side 2
+  DOMAIN INTERFACE: SSIF_AIR_03_INSULATION_GLIMMER_BOTTOM
+    Boundary List1 = SSIF_AIR_03_INSULATION_GLIMMER_BOTTOM Side 1
+    Boundary List2 = SSIF_AIR_03_INSULATION_GLIMMER_BOTTOM Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  DOMAIN INTERFACE: SSIF_AIR_03_INSULATION_GLIMMER_TOP
+    Boundary List1 = SSIF_AIR_03_INSULATION_GLIMMER_TOP Side 1
+    Boundary List2 = SSIF_AIR_03_INSULATION_GLIMMER_TOP Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  DOMAIN INTERFACE: SSIF_AIR_03_INSULATION_STEEL
+    Boundary List1 = SSIF_AIR_03_INSULATION_STEEL Side 1
+    Boundary List2 = SSIF_AIR_03_INSULATION_STEEL Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  DOMAIN INTERFACE: SSIF_AIR_03_NUT_2
+    Boundary List1 = SSIF_AIR_03_NUT_2 Side 1
+    Boundary List2 = SSIF_AIR_03_NUT_2 Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  DOMAIN INTERFACE: SSIF_AIR_03_SCREW_1
+    Boundary List1 = SSIF_AIR_03_SCREW_1 Side 1
+    Boundary List2 = SSIF_AIR_03_SCREW_1 Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  DOMAIN INTERFACE: SSIF_AIR_04_BRACKET_FLANGE
+    Boundary List1 = SSIF_AIR_04_BRACKET_FLANGE Side 1
+    Boundary List2 = SSIF_AIR_04_BRACKET_FLANGE Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7586,9 +7606,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_04_NUT_2
-    Boundary List1 = SSIF_AIR_04_NUT_2 Side 1
-    Boundary List2 = SSIF_AIR_04_NUT_2 Side 2
+  DOMAIN INTERFACE: SSIF_AIR_04_NUT_1
+    Boundary List1 = SSIF_AIR_04_NUT_1 Side 1
+    Boundary List2 = SSIF_AIR_04_NUT_1 Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7603,9 +7623,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_04_SCREW_1
-    Boundary List1 = SSIF_AIR_04_SCREW_1 Side 1
-    Boundary List2 = SSIF_AIR_04_SCREW_1 Side 2
+  DOMAIN INTERFACE: SSIF_AIR_04_SCREW_2
+    Boundary List1 = SSIF_AIR_04_SCREW_2 Side 1
+    Boundary List2 = SSIF_AIR_04_SCREW_2 Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7620,9 +7640,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_05_BRACKET_2
-    Boundary List1 = SSIF_AIR_05_BRACKET_2 Side 1
-    Boundary List2 = SSIF_AIR_05_BRACKET_2 Side 2
+  DOMAIN INTERFACE: SSIF_AIR_05_BRACKET_FLANGE
+    Boundary List1 = SSIF_AIR_05_BRACKET_FLANGE Side 1
+    Boundary List2 = SSIF_AIR_05_BRACKET_FLANGE Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7705,9 +7725,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_05_NUT_1
-    Boundary List1 = SSIF_AIR_05_NUT_1 Side 1
-    Boundary List2 = SSIF_AIR_05_NUT_1 Side 2
+  DOMAIN INTERFACE: SSIF_AIR_05_NUT_3
+    Boundary List1 = SSIF_AIR_05_NUT_3 Side 1
+    Boundary List2 = SSIF_AIR_05_NUT_3 Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7722,9 +7742,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_05_SCREW_2
-    Boundary List1 = SSIF_AIR_05_SCREW_2 Side 1
-    Boundary List2 = SSIF_AIR_05_SCREW_2 Side 2
+  DOMAIN INTERFACE: SSIF_AIR_05_SCREW_3
+    Boundary List1 = SSIF_AIR_05_SCREW_3 Side 1
+    Boundary List2 = SSIF_AIR_05_SCREW_3 Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7739,9 +7759,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_06_BRACKET_2
-    Boundary List1 = SSIF_AIR_06_BRACKET_2 Side 1
-    Boundary List2 = SSIF_AIR_06_BRACKET_2 Side 2
+  DOMAIN INTERFACE: SSIF_AIR_06_BEARING_HOUSING
+    Boundary List1 = SSIF_AIR_06_BEARING_HOUSING Side 1
+    Boundary List2 = SSIF_AIR_06_BEARING_HOUSING Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7773,9 +7793,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_06_INSULATION_GLIMMER_BOTTOM
-    Boundary List1 = SSIF_AIR_06_INSULATION_GLIMMER_BOTTOM Side 1
-    Boundary List2 = SSIF_AIR_06_INSULATION_GLIMMER_BOTTOM Side 2
+  DOMAIN INTERFACE: SSIF_AIR_06_RETAINER
+    Boundary List1 = SSIF_AIR_06_RETAINER Side 1
+    Boundary List2 = SSIF_AIR_06_RETAINER Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7790,9 +7810,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_06_INSULATION_GLIMMER_TOP
-    Boundary List1 = SSIF_AIR_06_INSULATION_GLIMMER_TOP Side 1
-    Boundary List2 = SSIF_AIR_06_INSULATION_GLIMMER_TOP Side 2
+  DOMAIN INTERFACE: SSIF_AIR_06_SEALING_FKM
+    Boundary List1 = SSIF_AIR_06_SEALING_FKM Side 1
+    Boundary List2 = SSIF_AIR_06_SEALING_FKM Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7807,60 +7827,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_06_INSULATION_STEEL
-    Boundary List1 = SSIF_AIR_06_INSULATION_STEEL Side 1
-    Boundary List2 = SSIF_AIR_06_INSULATION_STEEL Side 2
-    Interface Type = Solid Solid
-    INTERFACE MODELS:
-      Option = General Connection
-      FRAME CHANGE:
-        Option = None
-      END
-      PITCH CHANGE:
-        Option = None
-      END
-    END
-    MESH CONNECTION:
-      Option = Automatic
-    END
-  END
-  DOMAIN INTERFACE: SSIF_AIR_06_NUT_3
-    Boundary List1 = SSIF_AIR_06_NUT_3 Side 1
-    Boundary List2 = SSIF_AIR_06_NUT_3 Side 2
-    Interface Type = Solid Solid
-    INTERFACE MODELS:
-      Option = General Connection
-      FRAME CHANGE:
-        Option = None
-      END
-      PITCH CHANGE:
-        Option = None
-      END
-    END
-    MESH CONNECTION:
-      Option = Automatic
-    END
-  END
-  DOMAIN INTERFACE: SSIF_AIR_06_SCREW_3
-    Boundary List1 = SSIF_AIR_06_SCREW_3 Side 1
-    Boundary List2 = SSIF_AIR_06_SCREW_3 Side 2
-    Interface Type = Solid Solid
-    INTERFACE MODELS:
-      Option = General Connection
-      FRAME CHANGE:
-        Option = None
-      END
-      PITCH CHANGE:
-        Option = None
-      END
-    END
-    MESH CONNECTION:
-      Option = Automatic
-    END
-  END
-  DOMAIN INTERFACE: SSIF_AIR_07_BEARING_HOUSING
-    Boundary List1 = SSIF_AIR_07_BEARING_HOUSING Side 1
-    Boundary List2 = SSIF_AIR_07_BEARING_HOUSING Side 2
+  DOMAIN INTERFACE: SSIF_AIR_06_SHAFT_OUTPUT
+    Boundary List1 = SSIF_AIR_06_SHAFT_OUTPUT Side 1
+    Boundary List2 = SSIF_AIR_06_SHAFT_OUTPUT Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7892,9 +7861,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_07_RETAINER
-    Boundary List1 = SSIF_AIR_07_RETAINER Side 1
-    Boundary List2 = SSIF_AIR_07_RETAINER Side 2
+  DOMAIN INTERFACE: SSIF_AIR_07_SENSOR_COVER
+    Boundary List1 = SSIF_AIR_07_SENSOR_COVER Side 1
+    Boundary List2 = SSIF_AIR_07_SENSOR_COVER Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7909,9 +7878,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_07_SEALING_FKM
-    Boundary List1 = SSIF_AIR_07_SEALING_FKM Side 1
-    Boundary List2 = SSIF_AIR_07_SEALING_FKM Side 2
+  DOMAIN INTERFACE: SSIF_AIR_08_BUSHING_2
+    Boundary List1 = SSIF_AIR_08_BUSHING_2 Side 1
+    Boundary List2 = SSIF_AIR_08_BUSHING_2 Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7926,9 +7895,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_07_SHAFT_OUTPUT
-    Boundary List1 = SSIF_AIR_07_SHAFT_OUTPUT Side 1
-    Boundary List2 = SSIF_AIR_07_SHAFT_OUTPUT Side 2
+  DOMAIN INTERFACE: SSIF_AIR_08_CAP
+    Boundary List1 = SSIF_AIR_08_CAP Side 1
+    Boundary List2 = SSIF_AIR_08_CAP Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -7943,77 +7912,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_08_HOUSING_ACTUATOR
-    Boundary List1 = SSIF_AIR_08_HOUSING_ACTUATOR Side 1
-    Boundary List2 = SSIF_AIR_08_HOUSING_ACTUATOR Side 2
-    Interface Type = Solid Solid
-    INTERFACE MODELS:
-      Option = General Connection
-      FRAME CHANGE:
-        Option = None
-      END
-      PITCH CHANGE:
-        Option = None
-      END
-    END
-    MESH CONNECTION:
-      Option = Automatic
-    END
-  END
-  DOMAIN INTERFACE: SSIF_AIR_08_SENSOR_COVER
-    Boundary List1 = SSIF_AIR_08_SENSOR_COVER Side 1
-    Boundary List2 = SSIF_AIR_08_SENSOR_COVER Side 2
-    Interface Type = Solid Solid
-    INTERFACE MODELS:
-      Option = General Connection
-      FRAME CHANGE:
-        Option = None
-      END
-      PITCH CHANGE:
-        Option = None
-      END
-    END
-    MESH CONNECTION:
-      Option = Automatic
-    END
-  END
-  DOMAIN INTERFACE: SSIF_AIR_09_BUSHING_2
-    Boundary List1 = SSIF_AIR_09_BUSHING_2 Side 1
-    Boundary List2 = SSIF_AIR_09_BUSHING_2 Side 2
-    Interface Type = Solid Solid
-    INTERFACE MODELS:
-      Option = General Connection
-      FRAME CHANGE:
-        Option = None
-      END
-      PITCH CHANGE:
-        Option = None
-      END
-    END
-    MESH CONNECTION:
-      Option = Automatic
-    END
-  END
-  DOMAIN INTERFACE: SSIF_AIR_09_CAP
-    Boundary List1 = SSIF_AIR_09_CAP Side 1
-    Boundary List2 = SSIF_AIR_09_CAP Side 2
-    Interface Type = Solid Solid
-    INTERFACE MODELS:
-      Option = General Connection
-      FRAME CHANGE:
-        Option = None
-      END
-      PITCH CHANGE:
-        Option = None
-      END
-    END
-    MESH CONNECTION:
-      Option = Automatic
-    END
-  END
-  DOMAIN INTERFACE: SSIF_AIR_09_SHAFT
-    Boundary List1 = SSIF_AIR_09_SHAFT Side 1
-    Boundary List2 = SSIF_AIR_09_SHAFT Side 2
+  DOMAIN INTERFACE: SSIF_AIR_08_SHAFT
+    Boundary List1 = SSIF_AIR_08_SHAFT Side 1
+    Boundary List2 = SSIF_AIR_08_SHAFT Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -8096,9 +7997,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_AIR_SENSOR_COVER_2_DC_MOTOR
-    Boundary List1 = SSIF_AIR_SENSOR_COVER_2_DC_MOTOR Side 1
-    Boundary List2 = SSIF_AIR_SENSOR_COVER_2_DC_MOTOR Side 2
+  DOMAIN INTERFACE: SSIF_AIR_SENSOR_COVER_2_DC_MOTOR_2
+    Boundary List1 = SSIF_AIR_SENSOR_COVER_2_DC_MOTOR_2 Side 1
+    Boundary List2 = SSIF_AIR_SENSOR_COVER_2_DC_MOTOR_2 Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -8538,6 +8439,23 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
+  DOMAIN INTERFACE: SSIF_BRACKET_1_BRACKET_FLANGE
+    Boundary List1 = SSIF_BRACKET_1_BRACKET_FLANGE Side 1
+    Boundary List2 = SSIF_BRACKET_1_BRACKET_FLANGE Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
   DOMAIN INTERFACE: SSIF_BRACKET_2_HOUSING_TUBE_MACHINED
     Boundary List1 = SSIF_BRACKET_2_HOUSING_TUBE_MACHINED Side 1
     Boundary List2 = SSIF_BRACKET_2_HOUSING_TUBE_MACHINED Side 2
@@ -8572,9 +8490,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_BRACKET_2_NUT_1
-    Boundary List1 = SSIF_BRACKET_2_NUT_1 Side 1
-    Boundary List2 = SSIF_BRACKET_2_NUT_1 Side 2
+  DOMAIN INTERFACE: SSIF_BRACKET_FLANGE_INSULATION_GLIMMER_BOTTOM
+    Boundary List1 = SSIF_BRACKET_FLANGE_INSULATION_GLIMMER_BOTTOM Side 1
+    Boundary List2 = SSIF_BRACKET_FLANGE_INSULATION_GLIMMER_BOTTOM Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -8589,9 +8507,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_BRACKET_2_NUT_2
-    Boundary List1 = SSIF_BRACKET_2_NUT_2 Side 1
-    Boundary List2 = SSIF_BRACKET_2_NUT_2 Side 2
+  DOMAIN INTERFACE: SSIF_BRACKET_FLANGE_NUT_1
+    Boundary List1 = SSIF_BRACKET_FLANGE_NUT_1 Side 1
+    Boundary List2 = SSIF_BRACKET_FLANGE_NUT_1 Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -8606,9 +8524,26 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_BRACKET_2_NUT_3
-    Boundary List1 = SSIF_BRACKET_2_NUT_3 Side 1
-    Boundary List2 = SSIF_BRACKET_2_NUT_3 Side 2
+  DOMAIN INTERFACE: SSIF_BRACKET_FLANGE_NUT_2
+    Boundary List1 = SSIF_BRACKET_FLANGE_NUT_2 Side 1
+    Boundary List2 = SSIF_BRACKET_FLANGE_NUT_2 Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  DOMAIN INTERFACE: SSIF_BRACKET_FLANGE_NUT_3
+    Boundary List1 = SSIF_BRACKET_FLANGE_NUT_3 Side 1
+    Boundary List2 = SSIF_BRACKET_FLANGE_NUT_3 Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -8686,7 +8621,7 @@ FLOW: Flow Analysis 1
       HEAT TRANSFER:
         Option = Conservative Interface Flux
         HEAT TRANSFER INTERFACE MODEL:
-          Material = AirAsSolid400C
+          Material = Air Solid Ideal Gas BW 2015
           Option = Thin Material
           Thickness = 0.15 [mm]
         END
@@ -8779,7 +8714,7 @@ FLOW: Flow Analysis 1
       HEAT TRANSFER:
         Option = Conservative Interface Flux
         HEAT TRANSFER INTERFACE MODEL:
-          Material = AirAsSolid400C
+          Material = Air Solid Ideal Gas BW 2015
           Option = Thin Material
           Thickness = 0.15 [mm]
         END
@@ -8818,10 +8753,27 @@ FLOW: Flow Analysis 1
       FRAME CHANGE:
         Option = None
       END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  DOMAIN INTERFACE: SSIF_CAP_BUSHING_SHAFT_GAP
+    Boundary List1 = SSIF_CAP_BUSHING_SHAFT_GAP Side 1
+    Boundary List2 = SSIF_CAP_BUSHING_SHAFT_GAP Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
       HEAT TRANSFER:
         Option = Conservative Interface Flux
         HEAT TRANSFER INTERFACE MODEL:
-          Material = AirAsSolid400C
+          Material = Air Solid Ideal Gas BW 2015
           Option = Thin Material
           Thickness = 0.15 [mm]
         END
@@ -8868,9 +8820,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_DC_MOTOR_HOUSING_ACTUATOR
-    Boundary List1 = SSIF_DC_MOTOR_HOUSING_ACTUATOR Side 1
-    Boundary List2 = SSIF_DC_MOTOR_HOUSING_ACTUATOR Side 2
+  DOMAIN INTERFACE: SSIF_DC_MOTOR_1_DC_MOTOR_2
+    Boundary List1 = SSIF_DC_MOTOR_1_DC_MOTOR_2 Side 1
+    Boundary List2 = SSIF_DC_MOTOR_1_DC_MOTOR_2 Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -8885,59 +8837,9 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_DC_MOTOR_HOUSING_ACTUATOR_GAP_0P265
-    Boundary List1 = SSIF_DC_MOTOR_HOUSING_ACTUATOR_GAP_0P265 Side 1
-    Boundary List2 = SSIF_DC_MOTOR_HOUSING_ACTUATOR_GAP_0P265 Side 2
-    Interface Type = Solid Solid
-    INTERFACE MODELS:
-      Option = General Connection
-      FRAME CHANGE:
-        Option = None
-      END
-      HEAT TRANSFER:
-        Option = Conservative Interface Flux
-        HEAT TRANSFER INTERFACE MODEL:
-          Material = AirAsSolid400C
-          Option = Thin Material
-          Thickness = 0.265 [mm]
-        END
-      END
-      PITCH CHANGE:
-        Option = None
-      END
-    END
-    MESH CONNECTION:
-      Option = GGI
-    END
-  END
-  DOMAIN INTERFACE: SSIF_DC_MOTOR_HOUSING_ACTUATOR_GAP_0P5
-    Boundary List1 = SSIF_DC_MOTOR_HOUSING_ACTUATOR_GAP_0P5 Side 1
-    Boundary List2 = SSIF_DC_MOTOR_HOUSING_ACTUATOR_GAP_0P5 Side 2
-    Interface Type = Solid Solid
-    INTERFACE MODELS:
-      Option = General Connection
-      FRAME CHANGE:
-        Option = None
-      END
-      HEAT TRANSFER:
-        Option = Conservative Interface Flux
-        HEAT TRANSFER INTERFACE MODEL:
-          Material = AirAsSolid400C
-          Option = Thin Material
-          Thickness = 0.5 [mm]
-        END
-      END
-      PITCH CHANGE:
-        Option = None
-      END
-    END
-    MESH CONNECTION:
-      Option = GGI
-    END
-  END
-  DOMAIN INTERFACE: SSIF_GAS_SHAFT
-    Boundary List1 = SSIF_GAS_SHAFT Side 1
-    Boundary List2 = SSIF_GAS_SHAFT Side 2
+  DOMAIN INTERFACE: SSIF_DC_MOTOR_1_HOUSING_ACTUATOR
+    Boundary List1 = SSIF_DC_MOTOR_1_HOUSING_ACTUATOR Side 1
+    Boundary List2 = SSIF_DC_MOTOR_1_HOUSING_ACTUATOR Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -8952,9 +8854,60 @@ FLOW: Flow Analysis 1
       Option = Automatic
     END
   END
-  DOMAIN INTERFACE: SSIF_GAS_VALVE_PLATE
-    Boundary List1 = SSIF_GAS_VALVE_PLATE Side 1
-    Boundary List2 = SSIF_GAS_VALVE_PLATE Side 2
+  DOMAIN INTERFACE: SSIF_DC_MOTOR_2_DC_MOTOR_3
+    Boundary List1 = SSIF_DC_MOTOR_2_DC_MOTOR_3 Side 1
+    Boundary List2 = SSIF_DC_MOTOR_2_DC_MOTOR_3 Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  DOMAIN INTERFACE: SSIF_DC_MOTOR_2_HOUSING_ACTUATOR
+    Boundary List1 = SSIF_DC_MOTOR_2_HOUSING_ACTUATOR Side 1
+    Boundary List2 = SSIF_DC_MOTOR_2_HOUSING_ACTUATOR Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  DOMAIN INTERFACE: SSIF_GAS_1_SHAFT
+    Boundary List1 = SSIF_GAS_1_SHAFT Side 1
+    Boundary List2 = SSIF_GAS_1_SHAFT Side 2
+    Interface Type = Solid Solid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  DOMAIN INTERFACE: SSIF_GAS_1_VALVE_PLATE
+    Boundary List1 = SSIF_GAS_1_VALVE_PLATE Side 1
+    Boundary List2 = SSIF_GAS_1_VALVE_PLATE Side 2
     Interface Type = Solid Solid
     INTERFACE MODELS:
       Option = General Connection
@@ -9525,7 +9478,7 @@ FLOW: Flow Analysis 1
       HEAT TRANSFER:
         Option = Conservative Interface Flux
         HEAT TRANSFER INTERFACE MODEL:
-          Material = AirAsSolid400C
+          Material = Air Solid Ideal Gas BW 2015
           Option = Thin Material
           Thickness = 0.15 [mm]
         END
@@ -9569,6 +9522,102 @@ FLOW: Flow Analysis 1
       END
       MONITOR PARTICLES:
         Option = Full
+      END
+      MONITOR POINT: T_Air_Bracket
+        Cartesian Coordinates = 0.0033 [m], 0.054 [m], 0.065 [m]
+        Coord Frame = Coord 0
+        Option = Cartesian Coordinates
+        Output Variables List = Temperature
+        MONITOR LOCATION CONTROL:
+          Interpolation Type = Nearest Vertex
+        END
+        POSITION UPDATE FREQUENCY:
+          Option = Initial Mesh Only
+        END
+      END
+      MONITOR POINT: T_Air_Sensor_Cap
+        Cartesian Coordinates = 0.00575 [m], 0.093 [m], 0.058 [m]
+        Coord Frame = Coord 0
+        Option = Cartesian Coordinates
+        Output Variables List = Temperature
+        MONITOR LOCATION CONTROL:
+          Interpolation Type = Nearest Vertex
+        END
+        POSITION UPDATE FREQUENCY:
+          Option = Initial Mesh Only
+        END
+      END
+      MONITOR POINT: T_DC_Low
+        Cartesian Coordinates = -0.04845 [m], 0.04488 [m], 0.0435 [m]
+        Coord Frame = Coord 0
+        Option = Cartesian Coordinates
+        Output Variables List = Temperature
+        MONITOR LOCATION CONTROL:
+          Interpolation Type = Nearest Vertex
+        END
+        POSITION UPDATE FREQUENCY:
+          Option = Initial Mesh Only
+        END
+      END
+      MONITOR POINT: T_DC_Middle
+        Cartesian Coordinates = -0.04711 [m], 0.06683 [m], 0.0435 [m]
+        Coord Frame = Coord 0
+        Option = Cartesian Coordinates
+        Output Variables List = Temperature
+        MONITOR LOCATION CONTROL:
+          Interpolation Type = Nearest Vertex
+        END
+        POSITION UPDATE FREQUENCY:
+          Option = Initial Mesh Only
+        END
+      END
+      MONITOR POINT: T_DC_Top
+        Cartesian Coordinates = -0.0459 [m], 0.0903 [m], 0.0435 [m]
+        Coord Frame = Coord 0
+        Option = Cartesian Coordinates
+        Output Variables List = Temperature
+        MONITOR LOCATION CONTROL:
+          Interpolation Type = Nearest Vertex
+        END
+        POSITION UPDATE FREQUENCY:
+          Option = Initial Mesh Only
+        END
+      END
+      MONITOR POINT: T_Shaft_Low
+        Cartesian Coordinates = 0.00062 [m], 0.01006 [m], 0.0435 [m]
+        Coord Frame = Coord 0
+        Option = Cartesian Coordinates
+        Output Variables List = Temperature
+        MONITOR LOCATION CONTROL:
+          Interpolation Type = Nearest Vertex
+        END
+        POSITION UPDATE FREQUENCY:
+          Option = Initial Mesh Only
+        END
+      END
+      MONITOR POINT: T_Shaft_Middle
+        Cartesian Coordinates = 0.0025 [m], 0.04012 [m], 0.0435 [m]
+        Coord Frame = Coord 0
+        Option = Cartesian Coordinates
+        Output Variables List = Temperature
+        MONITOR LOCATION CONTROL:
+          Interpolation Type = Nearest Vertex
+        END
+        POSITION UPDATE FREQUENCY:
+          Option = Initial Mesh Only
+        END
+      END
+      MONITOR POINT: T_Shaft_Top
+        Cartesian Coordinates = 0.003 [m], 0.05177 [m], 0.04355 [m]
+        Coord Frame = Coord 0
+        Option = Cartesian Coordinates
+        Output Variables List = Temperature
+        MONITOR LOCATION CONTROL:
+          Interpolation Type = Nearest Vertex
+        END
+        POSITION UPDATE FREQUENCY:
+          Option = Initial Mesh Only
+        END
       END
       MONITOR POINT: Ts_IF_Inlet_Gas
         Coord Frame = Coord 0
@@ -9650,591 +9699,6 @@ FLOW: Flow Analysis 1
         Expression Value = ptOutletGas
         Option = Expression
       END
-      MONITOR POINT: tsave_SldBearingHousing
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldBearingHousing
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldBracket1
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldBracket1
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldBracket2
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldBracket2
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldBushing1
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldBushing1
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldBushing2
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldBushing2
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldCap
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldCap
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldCapBushing
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldCapBushing
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldDcMotor
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldDcMotor
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldGas
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldGas
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldHousingActuator
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldHousingActuator
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldHousingTubeMachined
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldHousingTubeMachined
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldInsulationGlimmerBottom
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldInsulationGlimmerBottom
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldInsulationGlimmerTop
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldInsulationGlimmerTop
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldInsulationSteel
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldInsulationSteel
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldLever1
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldLever1
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldLever2
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldLever2
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldNut1
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldNut1
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldNut2
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldNut2
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldNut3
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldNut3
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldPinGas1
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldPinGas1
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldPinGas2
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldPinGas2
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldRetainer
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldRetainer
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldRetainerBushing1
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldRetainerBushing1
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldRetainerBushing2
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldRetainerBushing2
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldRetainerSpring
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldRetainerSpring
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldRolledBushingPtfe
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldRolledBushingPtfe
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldRolledBushingSteel
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldRolledBushingSteel
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldScrew1
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldScrew1
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldScrew2
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldScrew2
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldScrew3
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldScrew3
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldSealingFkm
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldSealingFkm
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldSealingSteel
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldSealingSteel
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldSensorCover
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldSensorCover
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldShaft
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldShaft
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldShaftOutput
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldShaftOutput
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldSpring
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldSpring
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldValvePlate
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldValvePlate
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldWasher
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldWasher
-        Option = Expression
-      END
-      MONITOR POINT: tsave_SldWasherScraper
-        Coord Frame = Coord 0
-        Expression Value = tsaveSldWasherScraper
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldBearingHousing
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldBearingHousing
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldBracket1
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldBracket1
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldBracket2
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldBracket2
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldBushing1
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldBushing1
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldBushing2
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldBushing2
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldCap
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldCap
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldCapBushing
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldCapBushing
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldDcMotor
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldDcMotor
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldGas
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldGas
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldHousingActuator
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldHousingActuator
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldHousingTubeMachined
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldHousingTubeMachined
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldInsulationGlimmerBottom
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldInsulationGlimmerBottom
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldInsulationGlimmerTop
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldInsulationGlimmerTop
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldInsulationSteel
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldInsulationSteel
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldLever1
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldLever1
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldLever2
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldLever2
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldNut1
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldNut1
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldNut2
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldNut2
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldNut3
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldNut3
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldPinGas1
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldPinGas1
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldPinGas2
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldPinGas2
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldRetainer
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldRetainer
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldRetainerBushing1
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldRetainerBushing1
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldRetainerBushing2
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldRetainerBushing2
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldRetainerSpring
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldRetainerSpring
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldRolledBushingPtfe
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldRolledBushingPtfe
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldRolledBushingSteel
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldRolledBushingSteel
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldScrew1
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldScrew1
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldScrew2
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldScrew2
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldScrew3
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldScrew3
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldSealingFkm
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldSealingFkm
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldSealingSteel
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldSealingSteel
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldSensorCover
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldSensorCover
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldShaft
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldShaft
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldShaftOutput
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldShaftOutput
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldSpring
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldSpring
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldValvePlate
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldValvePlate
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldWasher
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldWasher
-        Option = Expression
-      END
-      MONITOR POINT: tsmax_SldWasherScraper
-        Coord Frame = Coord 0
-        Expression Value = tsmaxSldWasherScraper
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldBearingHousing
-        Coord Frame = Coord 0
-        Expression Value = tsminSldBearingHousing
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldBracket1
-        Coord Frame = Coord 0
-        Expression Value = tsminSldBracket1
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldBracket2
-        Coord Frame = Coord 0
-        Expression Value = tsminSldBracket2
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldBushing1
-        Coord Frame = Coord 0
-        Expression Value = tsminSldBushing1
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldBushing2
-        Coord Frame = Coord 0
-        Expression Value = tsminSldBushing2
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldCap
-        Coord Frame = Coord 0
-        Expression Value = tsminSldCap
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldCapBushing
-        Coord Frame = Coord 0
-        Expression Value = tsminSldCapBushing
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldDcMotor
-        Coord Frame = Coord 0
-        Expression Value = tsminSldDcMotor
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldGas
-        Coord Frame = Coord 0
-        Expression Value = tsminSldGas
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldHousingActuator
-        Coord Frame = Coord 0
-        Expression Value = tsminSldHousingActuator
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldHousingTubeMachined
-        Coord Frame = Coord 0
-        Expression Value = tsminSldHousingTubeMachined
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldInsulationGlimmerBottom
-        Coord Frame = Coord 0
-        Expression Value = tsminSldInsulationGlimmerBottom
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldInsulationGlimmerTop
-        Coord Frame = Coord 0
-        Expression Value = tsminSldInsulationGlimmerTop
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldInsulationSteel
-        Coord Frame = Coord 0
-        Expression Value = tsminSldInsulationSteel
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldLever1
-        Coord Frame = Coord 0
-        Expression Value = tsminSldLever1
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldLever2
-        Coord Frame = Coord 0
-        Expression Value = tsminSldLever2
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldNut1
-        Coord Frame = Coord 0
-        Expression Value = tsminSldNut1
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldNut2
-        Coord Frame = Coord 0
-        Expression Value = tsminSldNut2
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldNut3
-        Coord Frame = Coord 0
-        Expression Value = tsminSldNut3
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldPinGas1
-        Coord Frame = Coord 0
-        Expression Value = tsminSldPinGas1
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldPinGas2
-        Coord Frame = Coord 0
-        Expression Value = tsminSldPinGas2
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldRetainer
-        Coord Frame = Coord 0
-        Expression Value = tsminSldRetainer
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldRetainerBushing1
-        Coord Frame = Coord 0
-        Expression Value = tsminSldRetainerBushing1
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldRetainerBushing2
-        Coord Frame = Coord 0
-        Expression Value = tsminSldRetainerBushing2
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldRetainerSpring
-        Coord Frame = Coord 0
-        Expression Value = tsminSldRetainerSpring
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldRolledBushingPtfe
-        Coord Frame = Coord 0
-        Expression Value = tsminSldRolledBushingPtfe
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldRolledBushingSteel
-        Coord Frame = Coord 0
-        Expression Value = tsminSldRolledBushingSteel
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldScrew1
-        Coord Frame = Coord 0
-        Expression Value = tsminSldScrew1
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldScrew2
-        Coord Frame = Coord 0
-        Expression Value = tsminSldScrew2
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldScrew3
-        Coord Frame = Coord 0
-        Expression Value = tsminSldScrew3
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldSealingFkm
-        Coord Frame = Coord 0
-        Expression Value = tsminSldSealingFkm
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldSealingSteel
-        Coord Frame = Coord 0
-        Expression Value = tsminSldSealingSteel
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldSensorCover
-        Coord Frame = Coord 0
-        Expression Value = tsminSldSensorCover
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldShaft
-        Coord Frame = Coord 0
-        Expression Value = tsminSldShaft
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldShaftOutput
-        Coord Frame = Coord 0
-        Expression Value = tsminSldShaftOutput
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldSpring
-        Coord Frame = Coord 0
-        Expression Value = tsminSldSpring
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldValvePlate
-        Coord Frame = Coord 0
-        Expression Value = tsminSldValvePlate
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldWasher
-        Coord Frame = Coord 0
-        Expression Value = tsminSldWasher
-        Option = Expression
-      END
-      MONITOR POINT: tsmin_SldWasherScraper
-        Coord Frame = Coord 0
-        Expression Value = tsminSldWasherScraper
-        Option = Expression
-      END
       MONITOR POINT: vf_IF_Inlet_Gas
         Coord Frame = Coord 0
         Expression Value = vfIFInletGas
@@ -10282,7 +9746,7 @@ FLOW: Flow Analysis 1
     END
     CONVERGENCE CRITERIA:
       Conservation Target = 0.01
-      Residual Target = 1.E-4
+      Residual Target = 0.000001
       Residual Type = RMS
     END
     DYNAMIC MODEL CONTROL:
