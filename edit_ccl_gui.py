@@ -48,6 +48,7 @@ class MainApplication:
         self.entry_search_obj.bind("<KeyRelease>", self.filter_objs)
         self.entry_search_text = tk.Entry(self.frame_entries,font=self.font)
         self.entry_search_text.bind("<KeyRelease>", self.highlight_text)
+        self.entry_search_text.bind("<Return>", self.highlight_next)
           
     def gui_set_text(self):
         self.text_output = tk.Text(
@@ -55,6 +56,7 @@ class MainApplication:
                 height=20,
                 width=60,
                 wrap='none',
+                font='Consolas 11',
                 state='disabled')
         self.text_xscrollbar = tk.Scrollbar(self.frame_text)
         self.text_xscrollbar.config(command=self.text_output.xview,orient='horizontal')
@@ -148,11 +150,14 @@ class MainApplication:
         self.text_output.config(state='disabled')
     
     def cmd_selection(self,event):
-        self.filtered = []
-        obj_name = self.lb_objects.get(self.lb_objects.curselection()[0])
-        self.get_obj_data(name=obj_name,type=self.obj_type.get())
-        self.text = self.text_output.get(1.0,'end').split('\n')
-        self.filtered.append(obj_name)
+        if len(self.lb_objects.get(0,'end')) != 0:
+            self.filtered = []
+            obj_name = self.lb_objects.get(self.lb_objects.curselection()[0])
+            self.get_obj_data(name=obj_name,type=self.obj_type.get())
+            self.text = self.text_output.get(1.0,'end').split('\n')
+            self.filtered.append(obj_name)
+        else:
+            return
                 
     def cmd_selectfile(self):
         temp = tk.filedialog.askopenfilename(
@@ -266,13 +271,13 @@ class MainApplication:
     def highlight_text(self,event):
         self.text_output.tag_remove('found', '1.0', 'end')
         tag = self.entry_search_text.get()
-        fidx = []
+        self.fidx = []
         if tag:
             idx = '1.0'
             while 1:
                 idx = self.text_output.search(tag, idx, nocase=1, stopindex='end')
                 if not idx: break
-                fidx.append(math.floor(float(idx)))
+                self.fidx.append(math.floor(float(idx)))
                 lastidx = '%s+%dc' % (idx, len(tag))
                 self.text_output.tag_add('found', idx, lastidx)
                 idx = lastidx
@@ -280,13 +285,19 @@ class MainApplication:
                     'found',
                     foreground='red',
                     background='yellow',
-                    font='Courier 11 bold')
+                    font='Consolas 11 bold')
         else:
             self.text_output.yview_moveto(0)
         
-        if fidx:
+        if self.fidx:
             self.text_output.yview_moveto(0)
-            self.text_output.yview_scroll(fidx[0]-1,'units')
+            self.text_output.yview_scroll(self.fidx[0]-1,'units')
+            
+    def highlight_next(self,event):
+        self.text_output.yview_moveto(0)
+        self.text_output.yview_scroll(self.fidx[2],'units')
+        
+        return
                        
 def main():
     root = tk.Tk()
