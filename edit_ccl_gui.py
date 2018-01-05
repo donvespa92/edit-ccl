@@ -142,11 +142,6 @@ class MainApplication:
         for line in text:
             self.text_output.insert('end',line+"\n")
         self.text_output.config(state='disabled')
-
-    def cmd_filter(self,event):
-        mystr = self.entry_search_obj.get()
-        obj_name = self.objects[self.lb_objects.curselection()[0]] 
-        self.filter_text(name=mystr,domain=obj_name)
     
     def cmd_selection(self,event):
         self.filtered = []
@@ -187,50 +182,6 @@ class MainApplication:
         output.close()
         self.text_output.config(state='disabled')
     
-    def create_new_setup(self):
-        self.new_setup = self.orig_setup
-        selection = self.text_output.get(1.0,'end').split("\n")
-        for idx,line in enumerate(selection):
-                if ('#' in line):
-                    del selection[idx]
-                    
-        for idx,name in enumerate(self.filtered):
-            if (':' in name):
-                self.filtered[idx] = name.split(':')[1].strip(' ')
-                obj_type = name.split(':')[0].strip(' ')
-        
-        for name in self.filtered:       
-            fidx = 0
-            ofidx = 0
-            lidx = 0
-            olidx = 0
-            space = 0
-            for idx,line in enumerate(self.new_setup):
-                if (obj_type.upper()+':' in line and name in line):
-                    space = len(line) - len(line.lstrip(' '))
-                    fidx = idx
-                    break
-            
-            for idx,line in enumerate(self.new_setup[fidx+1:]):
-                sp = len(line) - len(line.lstrip(' '))
-                if (sp == space):
-                    lidx = fidx+1+idx
-                    break
-            
-            for idx,line in enumerate(selection):
-                if (obj_type.upper()+':' in line and name in line):
-                    space = len(line) - len(line.lstrip(' '))
-                    ofidx = idx
-                    break
-             
-            for idx,line in enumerate(selection[ofidx+1:]):
-                sp = len(line) - len(line.lstrip(' '))
-                if (sp == space):
-                    olidx = ofidx+1+idx
-                    break                                
-            
-            self.new_setup[fidx:lidx] = selection[ofidx:olidx]
-    
     def exportccl(self,inputfile):
         self.orig_setup = []
         
@@ -252,76 +203,6 @@ class MainApplication:
                     objects.append(obj)
         else:
             self.search_obj(self.obj_type.get())
-        
-    def filter_text(self,event):
-        tag = self.entry_search_text.get()
-        self.filtered = []
-        if (tag == ''):
-            self.insert_text(self.text)          
-        else:
-            if (tag.upper() != tag):
-                self.get_filtered_prop(tag)
-            elif (':' in tag):
-                obj_type = tag.split(':')[0]
-                obj_tag = tag.split(':')[1]
-                self.get_filtered_objects_filtered(obj_type,obj_tag)
-            else:
-                self.get_filtered_objects(tag)
-    
-    def get_filtered_prop(self,tag):
-        self.selection = []  
-        for idx,line in enumerate(self.text):
-            if tag in line:
-                if (tag.upper() != tag):
-                    self.selection.append(self.text[1])
-                    self.selection.append(line)
-                    self.filtered.append(self.text[1])
-                    break   
-        self.insert_text(self.selection)                     
-        
-    def get_filtered_objects(self,tag):
-        fidx = []
-        obj_names = []
-        self.selection = []  
-        for idx,line in enumerate(self.text):
-            if tag in line:
-                space = len(line) - len(line.lstrip(' '))
-                fidx.append(idx+1)
-                obj_names.append('# --- '+line.lstrip(' '))                
-        
-        for name,idx in zip(obj_names,fidx):
-            self.selection.append(name)
-            for line in self.text[idx:]:
-                sp = len(line) - len(line.lstrip(' '))
-                if (sp == space):
-                    break
-                else:
-                    self.selection.append(line)                 
-        self.insert_text(self.selection)
-        
-    def get_filtered_objects_filtered(self,obj_type,obj_tag):
-        fidx = []
-        obj_names = []
-        self.selection = [] 
-        self.filtered = []
-        for idx,line in enumerate(self.text):
-            if (obj_type.upper()+':' in line and obj_tag in line):
-                space = len(line) - len(line.lstrip(' '))
-                fidx.append(idx+1)
-                obj_names.append(line)
-                self.filtered.append(line.lstrip(' '))
-        
-        for name,idx in zip(obj_names,fidx):
-            self.selection.append('# '+'='*50)
-            self.selection.append(name)
-            for line in self.text[idx:]:
-                sp = len(line) - len(line.lstrip(' '))
-                if (sp == space):
-                    self.selection.append(line)
-                    break
-                else:
-                    self.selection.append(line)                 
-        self.insert_text(self.selection)
         
     def select_object_type(self,*args):
         self.search_obj(self.obj_type.get())
