@@ -3,6 +3,7 @@ from tkinter import filedialog
 from tkinter.font import Font
 from tkinter import messagebox
 import pandas as pd
+import math
 import os
 
 class MainApplication:
@@ -14,6 +15,7 @@ class MainApplication:
         self.ccl_orig = 'orig_setup.ccl'
         self.dom_names = []
         self.data = []
+        self.fidx = []
         
         self.gui_set_frames()
         self.gui_set_entries()
@@ -365,11 +367,13 @@ class MainApplication:
     def highlight_text(self,event):
         self.text_output.tag_remove('found', '1.0', 'end')
         tag = self.entry_search_text.get()
+        fidx = []
         if tag:
             idx = '1.0'
             while 1:
                 idx = self.text_output.search(tag, idx, nocase=1, stopindex='end')
                 if not idx: break
+                fidx.append(math.floor(float(idx)))
                 lastidx = '%s+%dc' % (idx, len(tag))
                 self.text_output.tag_add('found', idx, lastidx)
                 idx = lastidx
@@ -377,8 +381,14 @@ class MainApplication:
                     'found',
                     foreground='red',
                     background='yellow',
-                    font='Courier 11 bold')                                             
-    
+                    font='Courier 11 bold')
+        else:
+            self.text_output.yview_moveto(0)
+        
+        if fidx:
+            self.text_output.yview_moveto(0)
+            self.text_output.yview_scroll(fidx[0]-1,'units')
+                       
 def main():
     root = tk.Tk()
     root.title('Edit .ccl file')
