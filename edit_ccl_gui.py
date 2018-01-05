@@ -45,7 +45,7 @@ class MainApplication:
         self.entry_search_obj = tk.Entry(self.frame_entries,font=self.font)
         self.entry_search_obj.bind("<KeyRelease>", self.filter_objs)
         self.entry_search_text = tk.Entry(self.frame_entries,font=self.font)
-        self.entry_search_text.bind("<KeyRelease>", self.filter_bnds)
+        self.entry_search_text.bind("<KeyRelease>", self.highlight_text)
           
     def gui_set_text(self):
         self.text_output = tk.Text(
@@ -141,15 +141,15 @@ class MainApplication:
     def cmd_filter(self,event):
         mystr = self.entry_search_obj.get()
         obj_name = self.objects[self.lb_objects.curselection()[0]] 
-        self.filter_bnds(name=mystr,domain=obj_name)
+        self.filter_text(name=mystr,domain=obj_name)
     
     def cmd_selection(self,event):
         self.filtered = []
-        obj_name = self.objects[self.lb_objects.curselection()[0]]
+        obj_name = self.lb_objects.get(self.lb_objects.curselection()[0])
         self.get_obj_data(name=obj_name,type=self.obj_type.get())
         self.text = self.text_output.get(1.0,'end').split('\n')
         self.filtered.append(obj_name)
-        
+                
     def cmd_selectfile(self):
         temp = tk.filedialog.askopenfilename(
                 title='Choose a .def file',
@@ -248,7 +248,7 @@ class MainApplication:
         else:
             self.search_obj(self.obj_type.get())
         
-    def filter_bnds(self,event):
+    def filter_text(self,event):
         tag = self.entry_search_text.get()
         self.filtered = []
         if (tag == ''):
@@ -336,13 +336,12 @@ class MainApplication:
             self.lb_objects.insert('end',obj+"\n")
 
     def get_obj_data(self,**options):
-        obj_name = options.get('name')
+        obj_name = options.get('name').rstrip()
         obj_type = options.get('type')
         fidx = 0
         idx_parent = 0
         space = 0
         self.selection = []
-        self.filtered = []
         
         for idx,line in enumerate(self.orig_setup):
             if (obj_type.upper() in line and obj_name in line):
@@ -361,7 +360,24 @@ class MainApplication:
                 break
             else:
                 self.selection.append(line)
-        self.insert_text(self.selection)                                     
+        self.insert_text(self.selection)
+
+    def highlight_text(self,event):
+        self.text_output.tag_remove('found', '1.0', 'end')
+        tag = self.entry_search_text.get()
+        if tag:
+            idx = '1.0'
+            while 1:
+                idx = self.text_output.search(tag, idx, nocase=1, stopindex='end')
+                if not idx: break
+                lastidx = '%s+%dc' % (idx, len(tag))
+                self.text_output.tag_add('found', idx, lastidx)
+                idx = lastidx
+            self.text_output.tag_config(
+                    'found',
+                    foreground='red',
+                    background='yellow',
+                    font='Courier 11 bold')                                             
     
 def main():
     root = tk.Tk()
