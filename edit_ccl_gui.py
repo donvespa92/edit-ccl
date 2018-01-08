@@ -8,7 +8,12 @@ import os
 
 class MainApplication:
     def __init__(self,master):
-        self.obj_types = ['Domain','Boundary','Domain Interface','Expressions']
+        self.obj_types = ['Domain',
+                          'Boundary',
+                          'Domain Interface',
+                          'Material',
+                          'Expressions',
+                          'Monitor Point']
         self.font = Font(family="Arial", size=12)
         self.wdir = os.getcwd().replace('\\','/') 
         self.master = master
@@ -215,13 +220,32 @@ class MainApplication:
             self.search_obj(self.obj_type.get())
         
     def select_object_type(self,*args):
+        self.text_output.config(state='normal')
+        self.text_output.delete(1.0,'end')
+        self.text_output.config(state='disabled')
         self.search_obj(self.obj_type.get())
     
     def search_obj(self,obj_type):
         self.objects = []
-        if obj_type == 'Boundary':
+        if obj_type == 'Domain':
             for line in self.orig_setup:
                 if (obj_type.upper()+':' in line and 'Side ' not in line):
+                    self.objects.append(line.split(':')[1].lstrip(' ').rstrip(' '))
+        elif obj_type == 'Boundary':
+            for line in self.orig_setup:
+                if (obj_type.upper()+':' in line):
+                    self.objects.append(line.split(':')[1].lstrip(' ').rstrip(' '))
+        elif obj_type == 'Domain Interface':
+            for line in self.orig_setup:
+                if (obj_type.upper()+':' in line):
+                    self.objects.append(line.split(':')[1].lstrip(' ').rstrip(' '))
+        elif obj_type == 'Material':
+            for line in self.orig_setup:
+                if ('MATERIAL:' in line):
+                    self.objects.append(line.split(':')[1].lstrip(' ').rstrip(' '))
+        elif obj_type == 'Monitor Point':
+            for line in self.orig_setup:
+                if ('MONITOR POINT:' in line):
                     self.objects.append(line.split(':')[1].lstrip(' ').rstrip(' '))
         elif obj_type == 'Expressions':
             for idx,line in enumerate(self.orig_setup):
@@ -232,11 +256,8 @@ class MainApplication:
                     lidx = idx
                     break
             self.expressions = self.orig_setup[fidx:lidx]  
-            self.insert_text(self.expressions)
-        else:
-            for line in self.orig_setup:
-                if (obj_type.upper()+':' in line):
-                    self.objects.append(line.split(':')[1].lstrip(' ').rstrip(' '))
+            self.insert_text(self.expressions)           
+                    
         self.lb_objects.delete(0,'end')
         for obj in self.objects:
             self.lb_objects.insert('end',obj+"\n")
@@ -269,35 +290,43 @@ class MainApplication:
         self.insert_text(self.selection)
 
     def highlight_text(self,event):
-        self.text_output.tag_remove('found', '1.0', 'end')
-        tag = self.entry_search_text.get()
-        self.fidx = []
-        if tag:
-            idx = '1.0'
-            while 1:
-                idx = self.text_output.search(tag, idx, nocase=1, stopindex='end')
-                if not idx: break
-                self.fidx.append(math.floor(float(idx)))
-                lastidx = '%s+%dc' % (idx, len(tag))
-                self.text_output.tag_add('found', idx, lastidx)
-                idx = lastidx
-            self.text_output.tag_config(
-                    'found',
-                    foreground='red',
-                    background='yellow',
-                    font='Consolas 11 bold')
+        if event.keysym != 'Return':
+            self.counter = 1
+            self.text_output.tag_remove('found', '1.0', 'end')
+            tag = self.entry_search_text.get()
+            self.fidx = []
+            if tag:
+                idx = '1.0'
+                while 1:
+                    idx = self.text_output.search(tag, idx, nocase=1, stopindex='end')
+                    if not idx: break
+                    self.fidx.append(math.floor(float(idx)))
+                    lastidx = '%s+%dc' % (idx, len(tag))
+                    self.text_output.tag_add('found', idx, lastidx)
+                    idx = lastidx
+                self.text_output.tag_config(
+                        'found',
+                        foreground='red',
+                        background='yellow',
+                        font='Consolas 11 bold')
+            else:
+                self.text_output.yview_moveto(0)
+            
+            if self.fidx:
+                self.text_output.yview_moveto(0)
+                self.text_output.yview_scroll(self.fidx[0]-1,'units')
         else:
-            self.text_output.yview_moveto(0)
-        
+            return
+                    
+    def highlight_next(self,event):
         if self.fidx:
             self.text_output.yview_moveto(0)
-            self.text_output.yview_scroll(self.fidx[0]-1,'units')
-            
-    def highlight_next(self,event):
-        self.text_output.yview_moveto(0)
-        self.text_output.yview_scroll(self.fidx[2],'units')
+            self.text_output.yview_scroll(self.fidx[self.counter]-1,'units')
+        if self.counter == len(self.fidx)-1:
+            self.counter = 1
+        else:
+            self.counter += 1
         
-        return
                        
 def main():
     root = tk.Tk()
