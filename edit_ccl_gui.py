@@ -18,6 +18,7 @@ class MainApplication:
         self.wdir = os.getcwd().replace('\\','/') 
         self.master = master
         self.ccl_orig = 'orig_setup.ccl'
+        self.output = 'setup_mod.ccl' 
         self.dom_names = []
         self.data = []
         self.fidx = []
@@ -187,16 +188,47 @@ class MainApplication:
 
     def cmd_edit(self):
         self.text_output.config(state='normal')
+        self.button_selectfile.config(state='disabled')
+        self.lb_objects.config(state='disabled')
+        self.entry_search_obj.config(state='disabled')
+        self.entry_search_text.config(state='disabled')
+        self.optionmenu_objects.config(state='disabled')
+        
         return
     
     def cmd_save(self):
-        self.create_new_setup()           
-        output = open('D:/TMP/python/new_setup.ccl','w')
-        for item in self.new_setup:
-            output.write("%s\n" % item)
-        output.close()
-        self.text_output.config(state='disabled')
-    
+        new_obj = self.text_output.get('1.0','end')
+        
+        self.button_selectfile.config(state='normal')
+        self.lb_objects.config(state='normal')
+        self.entry_search_obj.config(state='normal')
+        self.entry_search_text.config(state='normal')
+        self.optionmenu_objects.config(state='normal')
+        
+        obj_type = self.obj_type.get()
+        obj_name = self.lb_objects.get(self.lb_objects.curselection()[0]).strip()
+        obj_text = self.text_output.get(1.0,'end')
+        obj_text = obj_text.splitlines()
+                
+        for idx,line in enumerate(self.orig_setup):
+            if (obj_type.upper() in line and obj_name in line):
+                fidx = idx
+                space1 = len(line) - len(line.lstrip(' '))
+                break
+        
+        for idx, line in enumerate(self.orig_setup):
+            space2 = len(line) - len(line.lstrip(' '))
+            if 'END' in line and space2 == space1 and idx > fidx:
+                lidx = idx+1
+                break
+        self.new_setup = self.orig_setup        
+        self.new_setup[fidx:lidx] = obj_text
+        
+        file = open (self.output,'w')
+        for line in self.new_setup:
+            file.write(line+'\n')
+        file.close()
+        
     def exportccl(self,inputfile):
         self.orig_setup = []
         
@@ -276,7 +308,6 @@ class MainApplication:
                 fidx = idx+1
                 space = len(line) - len(line.lstrip(' '))
                 idx_parent = fidx
-                self.selection.append('# '+'='*50)
                 self.selection.append(line)
                 self.filtered.append(line)
                 break

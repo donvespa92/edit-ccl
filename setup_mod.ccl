@@ -1109,7 +1109,7 @@ FLOW: Flow Analysis 1
         END
         HEAT TRANSFER:
           Option = Static Temperature
-          Static Temperature = TInletGas
+          Static Temperature = 20
         END
         MASS AND MOMENTUM:
           Mass Flow Rate = MassFlowRateInletGas
@@ -1420,6 +1420,7 @@ FLOW: Flow Analysis 1
       END
     END
   END
+
   DOMAIN: SLD_AIR_00
     Coord Frame = Coord 0
     Domain Type = Solid
