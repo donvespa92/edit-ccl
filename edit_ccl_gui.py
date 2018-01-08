@@ -256,7 +256,8 @@ class MainApplication:
                     lidx = idx
                     break
             self.expressions = self.orig_setup[fidx:lidx]  
-            self.insert_text(self.expressions)           
+            self.insert_text(self.expressions)
+            self.highlight_expressions()
                     
         self.lb_objects.delete(0,'end')
         for obj in self.objects:
@@ -326,6 +327,36 @@ class MainApplication:
             self.counter = 1
         else:
             self.counter += 1
+            
+    def highlight_expressions(self):
+        idx = '1.0'
+        self.text_output.tag_remove('expname', '1.0', 'end')
+        while 1: # Search for names
+            idx = self.text_output.search(' = ', idx, nocase=1, stopindex='end')
+            if not idx: break
+            length = idx.split('.')[1]
+            fidx = '%.1f' % math.floor(float(idx))
+            lidx = '%s+%dc' % (fidx, float(length))
+            self.text_output.tag_add('expname', fidx, lidx)
+            idx = '%s+%dc' % (fidx, float(length)+3)
+        
+        idx = '1.0'
+        self.text_output.tag_remove('equal', '1.0', 'end')
+        while 1: # Search for ' = '
+            idx = self.text_output.search('=', idx, nocase=1, stopindex='end')
+            if not idx: break
+            lidx = '%s+%dc' % (idx, 1)
+            self.text_output.tag_add('equal', idx, lidx)
+            idx = lidx
+        
+        self.text_output.tag_config(
+                'expname',
+                font='Consolas 11 bold')
+        self.text_output.tag_config(
+                'equal',
+                foreground='red',
+                font='Consolas 11 bold')
+        
         
                        
 def main():
