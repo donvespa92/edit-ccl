@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter.font import Font
 from tkinter import messagebox
+from shutil import copyfile
 import pandas as pd
 import math
 import os
@@ -18,7 +19,8 @@ class MainApplication:
         self.wdir = os.getcwd().replace('\\','/') 
         self.master = master
         self.ccl_orig = 'orig_setup.ccl'
-        self.output = 'setup_mod.ccl' 
+        self.output_ccl = 'setup_mod.ccl' 
+        self.output_def = 'D:/TMP/test_mod.def'
         self.dom_names = []
         self.data = []
         self.fidx = []
@@ -105,6 +107,7 @@ class MainApplication:
                 font=self.font,
                 height=2,
                 command=self.cmd_save)
+        self.button_save.config(state='disabled')
     
     def gui_set_optionmenu(self):
         self.label_optionmenu = tk.Label(
@@ -182,29 +185,30 @@ class MainApplication:
             self.entry_inputfile.delete(0,'end')
             self.entry_inputfile.insert(0,self.inputfile_path)
             self.entry_inputfile.config(state='disabled')
+            self.text_output.delete(1.0,'end')
             
             self.exportccl(self.inputfile_path)
             self.search_obj(self.obj_type.get())
 
     def cmd_edit(self):
-        self.text_output.config(state='normal')
-        self.button_selectfile.config(state='disabled')
-        self.lb_objects.config(state='disabled')
-        self.entry_search_obj.config(state='disabled')
-        self.entry_search_text.config(state='disabled')
-        self.optionmenu_objects.config(state='disabled')
-        
-        return
+        if self.lb_objects.curselection():
+            self.text_output.config(state='normal')
+            self.button_selectfile.config(state='disabled')
+            self.lb_objects.config(state='disabled')
+            self.entry_search_obj.config(state='disabled')
+            self.entry_search_text.config(state='disabled')
+            self.optionmenu_objects.config(state='disabled')
+            self.button_save.config(state='normal')
+        else:   
+            return
     
-    def cmd_save(self):
-        new_obj = self.text_output.get('1.0','end')
-        
+    def cmd_save(self):        
         self.button_selectfile.config(state='normal')
         self.lb_objects.config(state='normal')
         self.entry_search_obj.config(state='normal')
         self.entry_search_text.config(state='normal')
         self.optionmenu_objects.config(state='normal')
-        
+            
         obj_type = self.obj_type.get()
         obj_name = self.lb_objects.get(self.lb_objects.curselection()[0]).strip()
         obj_text = self.text_output.get(1.0,'end')
@@ -224,11 +228,18 @@ class MainApplication:
         self.new_setup = self.orig_setup        
         self.new_setup[fidx:lidx] = obj_text
         
-        file = open (self.output,'w')
+        file = open (self.output_ccl,'w')
         for line in self.new_setup:
             file.write(line+'\n')
         file.close()
         
+        self.write_solver_input()
+        self.button_save.config(state='disabled')
+        
+    def write_solver_input(self):
+        os.system('cfx5cmds -write -def %s -ccl %s' % 
+                  (os.path.abspath(self.inputfile_path),os.path.abspath(self.output_ccl)))
+               
     def exportccl(self,inputfile):
         self.orig_setup = []
         
@@ -387,7 +398,6 @@ class MainApplication:
                 'equal',
                 foreground='red',
                 font='Consolas 11 bold')
-        
         
                        
 def main():
